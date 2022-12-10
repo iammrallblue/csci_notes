@@ -6,7 +6,7 @@
 - [Django ORM Module](#django-orm-module)
   - [`mysqlclient` installation](#mysqlclient-installation)
   - [`ORM` module - **Object-relational mapper**](#orm-module---object-relational-mapper)
-  - [Connect to MySQL using **`Django ORM`**.](#connect-to-mysql-using-django-orm)
+  - [Connect to MySQL using **`Django ORM`**](#connect-to-mysql-using-django-orm)
   - [Using classes in `models.py` file to create a table in MySQL](#using-classes-in-modelspy-file-to-create-a-table-in-mysql)
   - [Running commands to create tables](#running-commands-to-create-tables)
   - [Add new column to a existed table](#add-new-column-to-a-existed-table)
@@ -50,7 +50,7 @@
 - `ORM` can do `CRUD` data in tables
 - `ORM` can operate MySQL, DONOT need to write `MySQL` statements
 
-### Connect to MySQL using **`Django ORM`**.
+### Connect to MySQL using **`Django ORM`**
 
 - `settings.py`, and `models.py` files are involved.
 
@@ -80,9 +80,9 @@ from django.db import models
 # Create your models here.
 # this class UserInfo is for creating a table nameed "app01_userinfo" in the database
 class UserInfo(models.Model):
-	name = models.CharField(max_length=32)
-	password = models.CharField(max_length=64)
-	age = models.IntegerField()
+ name = models.CharField(max_length=32)
+ password = models.CharField(max_length=64)
+ age = models.IntegerField()
 ```
 
 ### Running commands to create tables
@@ -126,10 +126,10 @@ class UserInfo(models.Model):
 """
 # class UserInfo inherited from class Model
 class UserInfo(models.Model):
-	# these are columns will be created inside table "app01_userinfo.
-	name = models.CharField(max_length=32)
-	password = models.CharField(max_length=64)
-	age = models.IntegerField()
+ # these are columns will be created inside table "app01_userinfo.
+ name = models.CharField(max_length=32)
+ password = models.CharField(max_length=64)
+ age = models.IntegerField()
 
     """
         Adding new columns to the existing tables, Methods to avoid errors
@@ -138,15 +138,15 @@ class UserInfo(models.Model):
             2. Adding columns with the default values
             3. Adding columns with the null value == True
     """
-	# size is a new column that added after table created,
-	# size column does not have default value, or null value is set
-	size = models.IntegerField()
+ # size is a new column that added after table created,
+ # size column does not have default value, or null value is set
+ size = models.IntegerField()
 
-	# 2. create dob column with the default value,
-	dob = models.IntegerField(default=2)
+ # 2. create dob column with the default value,
+ dob = models.IntegerField(default=2)
 
-	# 3. the default value of a new column "data" is set to null
-	data = models.IntegerField(null=True, blank=True)
+ # 3. the default value of a new column "data" is set to null
+ data = models.IntegerField(null=True, blank=True)
 
 ```
 
@@ -165,13 +165,13 @@ create table app01_userinfo(
 ### Operating values in the columns
 
 - `models.py`, `views.py`, `urls.py` and files are invloved.
-- Create a new **table** named `app01_department` in the `models.py ` by creating class **Department**
+- Create a new **table** named `app01_department` in the `models.py` by creating class **Department**
 - the Class `Department` is the table in the database
 
 ```python
     # create a table with one column in the database
     class Department(models.Model):
-	title = models.CharField(max_length=32)
+ title = models.CharField(max_length=32)
 ```
 
 - Insert values to the column `title` and the columns `name`, `password`, and `age`
@@ -195,7 +195,7 @@ create table app01_userinfo(
 - Testing `ORM` add a **path** to `urls.py` file
 
 ```python
-  	# test ORM database
+   # test ORM database
     path('orm/', views.orm),
 ```
 

@@ -1,16 +1,19 @@
+# Table of Content
+
 <details>
 
 <summary> Table of Contents</summary>
 
-- [Getting Started](#getting-started)
-- [Django ORM Module](#django-orm-module)
-  - [`mysqlclient` installation](#mysqlclient-installation)
-  - [`ORM` module - **Object-relational mapper**](#orm-module---object-relational-mapper)
-  - [Connect to MySQL using **`Django ORM`**](#connect-to-mysql-using-django-orm)
-  - [Using classes in `models.py` file to create a table in MySQL](#using-classes-in-modelspy-file-to-create-a-table-in-mysql)
-  - [Running commands to create tables](#running-commands-to-create-tables)
-  - [Add new column to a existed table](#add-new-column-to-a-existed-table)
-  - [Operating values in the columns](#operating-values-in-the-columns)
+- [Table of Content](#table-of-content)
+  - [Getting Started](#getting-started)
+  - [Django ORM Module](#django-orm-module)
+    - [`mysqlclient` installation](#mysqlclient-installation)
+    - [`ORM` module - **Object-relational mapper**](#orm-module---object-relational-mapper)
+    - [Connect to MySQL using **`Django ORM`**](#connect-to-mysql-using-django-orm)
+    - [Using classes in `models.py` file to create a table in MySQL](#using-classes-in-modelspy-file-to-create-a-table-in-mysql)
+    - [Running commands to create tables](#running-commands-to-create-tables)
+    - [Add new column to a existed table](#add-new-column-to-a-existed-table)
+    - [Operating values in the columns](#operating-values-in-the-columns)
 
 </details>
 

@@ -2,9 +2,10 @@
 
 <summary> Table of Contents</summary>
 
-- [Getting Started]
-
-- [Create Django Project](#create-django-project)
+- [Getting Started](#getting-started)
+  - [Before Django Installation](#before-django-installation)
+  - [Django Installation](#django-installation)
+- [Create a Django Project](#create-a-django-project)
   - [Create Django Project from `Terminal` (Recommanded)](#create-django-project-from-terminal-recommanded)
   - [Create `.venv` Virtual Environment from `Terminal`](#create-venv-virtual-environment-from-terminal)
   - [Create Django Project from `PyCharm`](#create-django-project-from-pycharm)
@@ -12,17 +13,28 @@
   - [Import requirements.txt for a Django project](#import-requirementstxt-for-a-django-project)
 - [What is APP?](#what-is-app)
   - [How to create an app by `manage.py`?](#how-to-create-an-app-by-managepy)
-  - [How to register an created app in `settings.py` file ?](#how-to-register-an-created-app-in-settingspy-file-)
+  - [How to register a created app in the `settings.py` file ?](#how-to-register-a-created-app-in-the-settingspy-file-)
   - [How to mapping `urls.py` and `views.py`](#how-to-mapping-urlspy-and-viewspy)
   - [How to create view functions in `views.py` file](#how-to-create-view-functions-in-viewspy-file)
-- [Running Django Project](#running-django-project)
+- [Running the Django Project](#running-the-django-project)
   - [Create a new **path** in `urls.py` file mapping to the **view function** in the `views.py` file](#create-a-new-path-in-urlspy-file-mapping-to-the-view-function-in-the-viewspy-file)
   - [Django Templates](#django-templates)
   - [GET/POST requests](#getpost-requests)
   - [Example Login page](#example-login-page)
-
+- [`Django REST Framework` Tutorial](#django-rest-framework-tutorial)
+  - [`REST` or REpresentational State Transfer Architectural Style](#rest-or-representational-state-transfer-architectural-style)
+  - [Status Codes:](#status-codes)
+- [`APIs` in the Django REST Framework aka DRF](#apis-in-the-django-rest-framework-aka-drf)
+  - [Django REST Framework Installation](#django-rest-framework-installation)
+  - [Using the **`DRF API`**](#using-the-drf-api)
+- [How to use `Django REST Framework` (`DRF`)](#how-to-use-django-rest-framework-drf)
+- [Everything is an Object](#everything-is-an-object)
 </details>
+
+## Getting Started
+
 ### Before Django Installation
+
 - Configure latest python version
 - Can use `pyenv` to manage multiple versions of python
 
@@ -30,7 +42,7 @@
 
 - Install from Python (pip or pip3)
 - Django Files
-  - django folder in the lib folder, and the django-admin in bin folder
+  - django folder in the `lib` folder, and the **django-admin** in `bin` folder
 
 ```sh
     # pip or pip3, both can install 3rd party modules
@@ -39,7 +51,7 @@
     > pip3 install django
 ```
 
-## Create Django Project
+## Create a Django Project
 
 - Under the django project, usually will see those files
 
@@ -50,12 +62,12 @@
       ├── django-admin
       ├── normalizer
       ├── pip
-      ├── pip3.9
+      ├── pip3.11
       ├── python3 -> python
-      ├── python3.9 -> python
-      └── wheel3.9
+      ├── python3.11 -> python
+      └── wheel3.11
     └── lib
-    └── python3.9
+    └── python3.11
         └── site-packages
             ├── Django-4.1.2.dist-info
             ├── django
@@ -70,7 +82,7 @@
 
 ```sh
   > cd ~/Workspace # The directory for all projects
-  > mkdir djangoProject # The directory for all django projects if directory does not existed
+  > mkdir djangoProject # The directory for the django project if directory does not existed
 
   > cd djangoProject
   > django-amdin startproject mydjango01 # create a Django project
@@ -85,10 +97,14 @@
 ### Create `.venv` Virtual Environment from `Terminal`
 
 - Using the latest `python3` to create `.venv`
+- `.venv` manages 3rd-party package easily
+  - such as **Django REST Framework**
 
 ```sh
   > cd ~/Workspace/djangoProject/mydjango01
   > python3.11 -m venv .venv # python3.11 is the current latest version
+
+  # source is the IMPORTANT Step
   > source ./venv/bin/activate # active the python3 for the project
 ```
 
@@ -97,22 +113,31 @@
 ```sh
   # sometimes, needs to update pip version
   > pip3 install --upgrade pip
-  
+
   # pip3 freeze > requirements.txt
   > pip3 install -r requirements.txt
 ```
 
+- Run the project in the `vscode`, for example ~/Workspace/djangoProject/mydjango02
+
+```sh
+  # run code command under the project directory,
+  > code .
+
+```
+
 ### Create Django Project from `PyCharm`
 
-- Two images show the steps to create project
+- Two images show the steps of createing projects
 
 <!-- ![alt text](img/create_project_from_pycharm01.png "create django project from PyCharm") -->
-<img src="img/create_project_from_pycharm01.png" alt="create project 01" width="550">
+<img src="img/create_project_from_pycharm01.png" alt="create project 01" width="600">
 <!-- ![alt text](img/create_project_from_pycharm02.png "create django project from PyCharm") -->
-<img src="img/create_project_from_pycharm02.png" alt="create project 02" width="550">
+<img src="img/create_project_from_pycharm02.png" alt="create project 02" width="600">
 
-- Creating projects by PyCharm is usually generating some files that are not using often
-- The project created by PyCharm needs to delete the default template folder
+- Creating a project by the PyCharm will be generating some files that are not using often
+  - such `asgi.py`, and `wsgi.py`, etc..
+- The project created by the PyCharm needs to delete the default template folder (if needed)
 
 ### Default files of a django project (introduction)
 
@@ -138,7 +163,7 @@
 
 ### Import requirements.txt for a Django project
 
-- `requirements.txt`, to install all 3rd-party packages
+- `requirements.txt`, to install all 3rd-party packages by using `Terminal` inside of the PyCharm
 
 ```sh
   pip install -r requirements.txt
@@ -168,17 +193,17 @@
 
 ```sh
 	# The command will create a folder named app_name with a few files inside of folder
-  	> python3.9 manage.py startapp app_name
+  	> python3.11 manage.py startapp app_name
 
 ```
 
 <!-- ![alt text](img/create_app_manage.py.png)-->
-<img src="img/create_app_manage.py.png" alt="create_app_manage" width="450">
+<img src="img/create_app_manage.py.png" alt="create_app_manage" width="550">
 
 ```sh
   ❯ tree ./app01
   ./app01
-  ├── app01
+  ├── app01  # this is an APP in the project
   │   ├── __init__.py
   │   ├── admin.py  # DONOT touch
   │   ├── apps.py # DONOT touch
@@ -188,7 +213,7 @@
   │   ├── tests.py # for testing DONOT touch
   │   └── views.py # IMPORTANT, The view functions are coding in here
   ├── manage.py
-  ├── mydjango01
+  ├── mydjango01 # this is an APP in the project
   │   ├── __init__.py
   │   ├── __pycache__
   │   │   ├── __init__.cpython-39.pyc
@@ -200,7 +225,7 @@
 
 ```
 
-### How to register an created app in `settings.py` file ?
+### How to register a created app in the `settings.py` file ?
 
 - Find `INSTALLED_APPS` in the `settings.py` file
 - Add the app that going to be coded.
@@ -211,6 +236,8 @@
   INSTALLED_APPS = [
        ...
       'app01.apps.App01Config' # add to here
+      # or
+      'app01'
   ]
 ```
 
@@ -220,47 +247,47 @@
 ### How to mapping `urls.py` and `views.py`
 
 - The `urls.py` and `views.py` files are involved
-- Import `from app01 import views` the `urls.py` file
-- Find `urlpatterns` in the `urls.py` file, add **paths** for view functions
-- `URL dispatcher`,
-- add a path that going to be coded, **mapping the url --> function in views.py**
-- This module is pure Python code and is a mapping between `URL path` expressions to view functions
+  - Import `from app01 import views` the `urls.py` file
+  - Find `urlpatterns` in the `urls.py` file, add **paths** for view functions
+  - `URL dispatcher`,
+  - add a path that going to be coded, **mapping the url --> function in views.py**
+  - This module is pure Python code and is a mapping between `URL path` expressions to view functions
 
 ```Python
-  # code in the urls.py
-  urlpatterns = [
-    # path('admin/', admin.site.urls),
+    # code in the urls.py
+    urlpatterns = [
+      # path('admin/', admin.site.urls),
 
-    # the path is for mapping the url in the urls.py --> function in the views.py
-	# when user access the URL index/, the URL goes to views.py file to find the view function "index"
-    path('index/', views.index),
-]
+      # the path is for mapping the url in the urls.py --> function in the views.py
+    # when user access the URL index/, the URL goes to views.py file to find the view function "index"
+      path('index/', views.index),
+    ]
 ```
 
 <!-- ![alt text](img/add_path_in_urls.png) -->
-<img src="img/add_path_in_urls.png" alt="add path" width="600">
+<img src="img/add_path_in_urls.png" alt="add path" width="900">
 
 ### How to create view functions in `views.py` file
 
 - The `views.py` file is involved,
-- Import `from django.shortcuts import render, HttpResponse` to the `views.py` file
-- The view function that going to be implemented is based on the **path** that created in `urls.py` file
-- **IMPORTANT** The `views.py` file contains all view functions, is a Python function that takes a web request and returns a web response.
-- **IMPORTANT** The `index` is the view function is corresponding to the `path` in the `urls.py` file
+  - Import `from django.shortcuts import render, HttpResponse` to the `views.py` file
+  - The view function that going to be implemented is based on the **path** that created in `urls.py` file
+  - <span style="color:red">**IMPORTANT**</span> The `views.py` file contains all view functions, is a Python function that takes a web request and returns a web response.
+  - <span style="color:red">**IMPORTANT**</span> The view function `index` below that is corresponding to the `paths` in the `urls.py` file
 
-```Python
-  def index(request):
-	return HttpResponse("Welcome")
-```
+  ```Python
+      def index(request):
+      return HttpResponse("Welcome")
+  ```
 
 <!-- ![alt text](img/view_function_in_views.png) -->
 <img src="img/view_function_in_views.png" alt="view function" width="550">
 
-## Running Django Project
+## Running the Django Project
 
 - Running Django Server in the `Terminal`
 
-  - Run command `python3.9 manage.py runserver`
+  - Run command `python3.11 manage.py runserver`
 
   ```sh
       ❯ python3 manage.py runserver
@@ -275,34 +302,35 @@
 
   ```
 
-- Running by PyCharm
+- Running by the PyCharm
   - NONE
 
 ### Create a new **path** in `urls.py` file mapping to the **view function** in the `views.py` file
 
 - `urls.py`, `views.py` and `user_list.html` files are invloved.
-- Add two new **path** `'user/list/'` and `'user/add/'` in the `urls.py` file
+  - Add two new **path** `'user/list/'` and `'user/add/'` in the `urls.py` file
+
+    ```Python
+    # create an new page
+    path('user/list/', views.user_list),
+
+    path('user/add/', views.user_add),
+    ```
+
+  - Add two view functions named `user_list` and `user_add` in the `views.py` file
 
   ```Python
-  # create an new page
-  path('user/list/', views.user_list),
+    def user_list(request):
+      # request is from the URL, it will look for the user_list.html file from all template folders.
+        # based on the order of registered apps, see settings.py file
+      return render(request, "user_list.html")
 
-  path('user/add/', views.user_add),
+    def user_add(request):
+      return HttpResponse("Add User")
   ```
 
-- Add two view functions named `user_list` and `user_add` in the `views.py` file
-
-  ```Python
-  def user_list(request):
-  	# request is from the URL, it will look for the user_list.html file from all template folders.
-      # based on the order of registered apps, see settings.py file
-  	return render(request, "user_list.html")
-
-  def user_add(request):
-  	return HttpResponse("Add User")
-  ```
-
-  ![alt text](img/urls_to_functions.png)
+  <!-- ![url-view](img/urls_to_functions.png =100x100) -->
+  <img src="./img/urls_to_functions.png" alt="add path" width="900">
 
 - in the **template** folder, add a html page named `user_list.html`
 
@@ -414,7 +442,7 @@ def tpl(request):
     <!-- get the name form the second dictionary-->
     {{ n4.1.role }}
     <!-- get the role form the second dictionary -->
-    {% for item in n4 %}
+    {% for item in n4 %},
     <div>{{ item.name }} {{ item.salary }}</div>
     {% endfor %} <！-- iterate all dictionaries in the data_list to get name and
     salary-->
@@ -539,3 +567,141 @@ def login(request):
 <!-- add csrf_token to the code -->
 {% csrf_token %} <!--For validating login request -->
 ```
+
+## `Django REST Framework` Tutorial
+
+### `REST` or REpresentational State Transfer Architectural Style
+
+- 表現層狀態轉換
+- an architectuaral style for providing standards between computer systems on the web,
+- making it easier for systems to communicate with eatch other.
+- A `web API` that obeys the `REST constraints` is informally described as `RESTful`
+- especially for the data transferring back and forth front-end, and back-end
+
+<!-- ![alt text](img/add_path_in_urls.png) -->
+<img src="img/rest_api.jpg" alt="add path" width="700">
+
+### Status Codes:
+
+- [Status Codes Reference:](https://www.django-rest-framework.org/api-guide/status-codes/)
+- HTTP_100_CONTINUE
+- HTTP_101_SWITCHING_PROTOCOLS
+- HTTP_200_OK
+- HTTP_201_CREATED
+- HTTP_202_ACCEPTED
+- 4xx, Client Error
+- 5xx, Server Error
+
+## `APIs` in the Django REST Framework aka DRF
+
+- What is the `REST API`?
+  - REST API is a way of accessing web services in a simple and flexible way without having any processing.
+
+### Django REST Framework Installation
+
+- Install 3rd-party package
+- <span style="color:LightGreen" font-size:16px> **Recommended**: </span>, create a **`.venv`** before install packages
+
+```sh
+    $ pip install djangorestframework
+    # or
+    $ pip3 install djangorestframework 
+```
+
+### Using the **`DRF API`**
+
+- A request is sent from client to server in the form of a web URL as `HTTP` `GET` or `POST` or `PUT` or `DELETE` request.
+
+## How to use `Django REST Framework` (`DRF`)
+
+- `models.py`, `serializers.py`, `urls.py`, `settings.py`, and `views.py` are involved
+  - Edit the settings module **`settings.py`** file
+    - Importing apps and the 3rd-party packages are NECESSARY
+    - the `rest_framework` MUST be imported before using it
+
+```python
+    INSTALLED_APPS = [
+        # ...
+
+        "app01", # importing the self-defined app
+        "rest_framework" # importing the 3rd-party package rest_framework
+    ]
+```
+
+- Edit the **`urls.py`** router (url) file
+
+```python
+    from django.contrib import admin
+    from django.urls import path, include
+    from app01 import views
+    from rest_framework.routers import DefaultRouter
+
+    # router
+    router = DefaultRouter()
+    router.register('books', views.BookViewSet)
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+
+        # path('book/', include("app01.app01.urls"))
+    ]
+    # add both list of urls together
+    urlpatterns += router.urls
+```
+
+- Edit the **`views.py`** file
+
+```python
+    from rest_framework.viewsets import ModelViewSet
+    from .models import Book
+    from .serializers import BookModelSerializer
+    # create your views here
+    class BookViewSet(ModelViewSet):
+        queryset = Book.objects.all()
+        serializer_class = BookModelSerializer
+```
+
+- Edit the **`models.py`** file
+
+```python
+    from django.db import models
+    """ the Book class is the table model which will create a Book table in the database."""
+    class Book(models.Model):
+        book_id = models.AutoField(primary_key=True)
+        book_name = models.CharField(max_length=64)
+        price = models.DecimalField(max_digits=5, decimal_places=2)
+        author = models.CharField(max_length=64)
+
+        class Meta:
+            managed = True
+            db_table = 'Book'
+
+```
+
+- Create and edit the **`serializers.py`** file
+  - the `serializers.py` file provides complex data such as **querysets** and **model instances** to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types.
+  - Serializers also provide **`deserialization`**, allowing parsed data to be converted back into complex types, after first validating the incoming data.
+
+```Python
+    from rest_framework.serializers import ModelSerializer
+    from app01.models import Book
+    class BookModelSerializer(ModelSerializer):
+        class Meta:
+            model = Book
+            fields = "__all__"
+```
+
+## Everything is an Object
+
+```python
+    def foo(x, y):
+        return x + y
+
+    foo.name = "foo" # a method is an object as well
+    # a method name can be assigned to the foo method
+
+    print(foo(2,3))
+
+    print(foo.name) # since the name is assigned, we can print it out as well.
+```
+

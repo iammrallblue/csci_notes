@@ -56,7 +56,7 @@ Step 1. Login to the `MySQL` database.
 
 ```sql
     > mysql -u root -p
-        Enter password: **********
+        -- Enter password: **********
     mysql>
 
 ```
@@ -616,5 +616,125 @@ Example, personal management
     # 3rd, close connection and cursor
     cursor.close()
     conn.close()
+
+```
+
+### MySQL Dead Loop
+- To solve dead loops caused by insert statement
+```sql
+    -- to empty a table
+    SET FOREIGN_KEY_CHECKS = 0;
+    TRUNCATE TABLE ebooking.seat;
+    SET FOREIGN_KEY_CHECKS = 1;
+
+    -- to delete all records from a table 
+    SET FOREIGN_KEY_CHECKS = 0;
+    DELETE
+    FROM ebooking.seat;
+    SET Foreign_Key_Checks = 1;
+
+    SHOW PROCESSLIST;
+    KILL 28; # 28 is process id
+    KILL 70;
+    KILL 75;
+
+    -- show the current database privileges.
+    SHOW GRANTS;
+    
+```
+
+### Demo of Creating seats for each Showroom
+
+```sql
+USE ebooking;
+/* For Mysql workbench. */
+DROP PROCEDURE IF EXISTS proc_init_seats;
+
+DELIMITER  $
+# the procedure for initialing seats
+CREATE PROCEDURE proc_init_seats()
+BEGIN
+    DECLARE i INT; # i is row
+    DECLARE j INT; # j is seat
+    DECLARE room_number INT; # show room number
+    DECLARE n_row INT;
+    DECLARE seat_per_row INT;
+
+    DECLARE done BOOLEAN DEFAULT 0;
+    # get fields from the table show_room
+    DECLARE cursor_room CURSOR FOR SELECT show_room_id, number_of_row, seats_per_row FROM ebooking.show_room;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+    OPEN cursor_room;
+    REPEAT
+        FETCH cursor_room INTO room_number, n_row, seat_per_row; # fetch fields from the table show_room
+    IF NOT done THEN
+     SET i = 1;
+     SET j = 1;
+     WHILE (i <= n_row) # 5 rows
+       DO
+         WHILE (j <= seat_per_row) # 10 seats for each row
+           DO
+             INSERT INTO ebooking.seat(`row`, number, show_room_id) VALUES (i, j, room_number);
+             SET j = j + 1;
+           END WHILE;
+         SET i = i + 1;
+         SET j = 1;
+       END WHILE;
+     END IF;
+    UNTIL done = 1 END REPEAT;
+    CLOSE cursor_room;
+END ;
+$
+DELIMITER ;
+
+CALL proc_init_seats();
+/* For Mysql workbench. */
+```
+
+```sql
+USE ebooking;
+/* For PyCharm. */
+DROP PROCEDURE IF EXISTS proc_init_seats;
+
+DELIMITER  $ 
+# the procedure for initialing seats
+CREATE PROCEDURE proc_init_seats()
+BEGIN
+    DECLARE i INT; # i is row
+    DECLARE j INT; # j is seat
+    DECLARE room_number INT; # show room number
+    DECLARE n_row INT;
+    DECLARE seat_per_row INT;
+
+    DECLARE done BOOLEAN DEFAULT 0;
+    # get fields from the table show_room
+    DECLARE cursor_room CURSOR FOR SELECT show_room_id, number_of_row, seats_per_row FROM ebooking.show_room;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+    OPEN cursor_room;
+    REPEAT
+        FETCH cursor_room INTO room_number, n_row, seat_per_row; # fetch fields from the table show_room
+        IF NOT done THEN
+            SELECT room_number, n_row, seat_per_row;
+            SET i = 1;
+            SET j = 1;
+            WHILE (i <= n_row) # 5 rows
+                DO
+                    WHILE (j <= seat_per_row) # 10 seats for each row
+                        DO
+                            INSERT INTO ebooking.seat(`row`, number, show_room_id) VALUES (i, j, room_number);
+                            SET j = j + 1;
+                        END WHILE;
+                    SET i = i + 1;
+                    SET j = 1;
+                END WHILE;
+        END IF;
+    UNTIL done = 1 END REPEAT;
+    CLOSE cursor_room;
+END $
+
+DELIMITER ;
+
+CALL proc_init_seats();
+/* For PyCharm. */
 
 ```

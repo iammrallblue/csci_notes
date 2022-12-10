@@ -1,13 +1,25 @@
-
 <details>
 
 <summary> Table of Contents</summary>
 
+- [Getting Started]
+- [`REST` or REpresentational State Transfer Architectural Style](#rest-or-representational-state-transfer-architectural-style)
+  - [Status Codes:](#status-codes)
+- [`APIs` in Django REST Framework (DRF)](#apis-in-django-rest-framework-drf)
+
+  - [Django REST Framework Installation](#django-rest-framework-installation)
+  - [Using the **`DRF API`**](#using-the-drf-api)
+
+- [How to use `Django REST Framework` aka `DRF`](#how-to-use-django-rest-framework-aka-drf)
+
+- [Everything is an Object](#everything-is-an-object)
+
 </details>
 
 ## `REST` or REpresentational State Transfer Architectural Style
+
 - 表現層狀態轉換
-- an architectuaral style for providing standards between computer systems on the web, 
+- an architectuaral style for providing standards between computer systems on the web,
 - making it easier for systems to communicate with eatch other.
 - A `web API` that obeys the `REST constraints` is informally described as `RESTful`
 - especially for the data transferring back and forth front-end, and back-end
@@ -16,6 +28,7 @@
 <img src="img/rest_api.jpg" alt="add path" width="700">
 
 ### Status Codes:
+
 - [Status Codes Reference:](https://www.django-rest-framework.org/api-guide/status-codes/)
 - HTTP_100_CONTINUE
 - HTTP_101_SWITCHING_PROTOCOLS
@@ -24,31 +37,32 @@
 - HTTP_202_ACCEPTED
 - 4xx, Client Error
 - 5xx, Server Error
-  
-## APIs in Django REST Framework
+
+## `APIs` in Django REST Framework aka DRF
 
 - What is the `REST API`?
   - REST API is a way of accessing web services in a simple and flexible way without having any processing.
 
 ### Django REST Framework Installation
-  - Install 3rd-party package
-  - **Recommended**, create a **`.venv`** before install packages
-  
+
+- Install 3rd-party package
+- <span style="color:LightGreen">**Recommended**: </span>, create a **`.venv`** before install packages
+
 ```sh
     $ pip install djangorestframework
 ```
 
-### Using **`REST API`** 
+### Using the **`DRF API`**
+
 - A request is sent from client to server in the form of a web URL as `HTTP` `GET` or `POST` or `PUT` or `DELETE` request.
 
-## How to use `Django REST Framework` aka `DRF`
+## How to use `Django REST Framework` (`DRF`)
 
 - `models.py`, `serializers.py`, `urls.py`, `settings.py`, `views.py`
-  
 - Edit the **`settings.py`** file
-  - beause we have to use those apps, 
+  - beause we have to use those apps,
   - `rest_framework` MUST be imported
-  
+
 ```Python
     INSTALLED_APPS = [
         # ...
@@ -59,7 +73,7 @@
 ```
 
 - Edit the **`urls.py`** router (url) file
-  
+
 ```Python
     from django.contrib import admin
     from django.urls import path, include
@@ -80,7 +94,7 @@
 ```
 
 - Edit the **`views.py`** file
-  
+
 ```Python
     from rest_framework.viewsets import ModelViewSet
     from .models import Book
@@ -92,7 +106,7 @@
 ```
 
 - Edit the **`models.py`** file
-  
+
 ```Python
     from django.db import models
     # create a Book table in the database.
@@ -105,12 +119,11 @@
         class Meta:
             managed = True
             db_table = 'Book'
- 
+
 ```
 
-
 - Create and edit the **`serializers.py`** file
-  - the `serializers.py` file provides complex data such as **querysets** and **model instances** to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types. 
+  - the `serializers.py` file provides complex data such as **querysets** and **model instances** to be converted to native Python datatypes that can then be easily rendered into JSON, XML or other content types.
   - Serializers also provide **`deserialization`**, allowing parsed data to be converted back into complex types, after first validating the incoming data.
 
 ```Python
@@ -132,6 +145,6 @@
     # a method name can be assigned to the foo method
 
     print(foo(2,3))
-    
+
     print(foo.name) # since the name is assigned, we can print it out as well.
 ```

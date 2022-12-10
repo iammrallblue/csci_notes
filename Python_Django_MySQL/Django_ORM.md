@@ -76,7 +76,8 @@ DATABASES = {
 ### Using classes in `models.py` file to create a table in MySQL
 
 - In the `models.py` file, create classes for **MySQL** operations
-- <span style="color:red">IMPORTANT: </span>All database operations are existing as classes in `models.py` file
+- <span style="color:red">IMPORTANT: </span>
+- All database operations are existing as classes in `models.py` file
 
 ```python
 from django.db import models

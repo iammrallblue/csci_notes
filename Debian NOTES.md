@@ -33,3 +33,24 @@
   > sudo apt update
   # remove i386, fix the eeror
 ```
+### Check current Linux(Debian) version
+```sh
+  > uname -a
+  # -a, --all print all information, in the following order,
+  # result: Linux db16 5.10.0-18-amd64 #1 SMP Debian 5.10.140-1 (2022-09-02) x86_64 GNU/Linux
+
+  > uname -v
+  # -v, --kernel-version   print the kernel version
+  # result: #1 SMP Debian 5.10.140-1 (2022-09-02)
+```
+
+### Check current IP address
+- Show all info of IP address
+```sh
+  > ifconfig
+
+  > ip a
+
+  > ip addr show
+
+```

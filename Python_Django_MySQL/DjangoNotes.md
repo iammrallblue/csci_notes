@@ -1,34 +1,38 @@
+# Django Notes
+
 <details>
 
 <summary> Table of Contents</summary>
 
-- [Getting Started](#getting-started)
-  - [Before Django Installation](#before-django-installation)
-  - [Django Installation](#django-installation)
-- [Create a Django Project](#create-a-django-project)
-  - [Create Django Project from `Terminal` (Recommanded)](#create-django-project-from-terminal-recommanded)
-  - [Create `.venv` Virtual Environment from `Terminal`](#create-venv-virtual-environment-from-terminal)
-  - [Create Django Project from `PyCharm`](#create-django-project-from-pycharm)
-  - [Default files of a django project (introduction)](#default-files-of-a-django-project-introduction)
-  - [Import requirements.txt for a Django project](#import-requirementstxt-for-a-django-project)
-- [What is APP?](#what-is-app)
-  - [How to create an app by `manage.py`?](#how-to-create-an-app-by-managepy)
-  - [How to register a created app in the `settings.py` file ?](#how-to-register-a-created-app-in-the-settingspy-file-)
-  - [How to mapping `urls.py` and `views.py`](#how-to-mapping-urlspy-and-viewspy)
-  - [How to create view functions in `views.py` file](#how-to-create-view-functions-in-viewspy-file)
-- [Running the Django Project](#running-the-django-project)
-  - [Create a new **path** in `urls.py` file mapping to the **view function** in the `views.py` file](#create-a-new-path-in-urlspy-file-mapping-to-the-view-function-in-the-viewspy-file)
-  - [Django Templates](#django-templates)
-  - [GET/POST requests](#getpost-requests)
-  - [Example Login page](#example-login-page)
-- [`Django REST Framework` Tutorial](#django-rest-framework-tutorial)
-  - [`REST` or REpresentational State Transfer Architectural Style](#rest-or-representational-state-transfer-architectural-style)
-  - [Status Codes:](#status-codes)
-- [`APIs` in the Django REST Framework aka DRF](#apis-in-the-django-rest-framework-aka-drf)
-  - [Django REST Framework Installation](#django-rest-framework-installation)
-  - [Using the **`DRF API`**](#using-the-drf-api)
-- [How to use `Django REST Framework` (`DRF`)](#how-to-use-django-rest-framework-drf)
-- [Everything is an Object](#everything-is-an-object)
+- [Django Notes](#django-notes)
+  - [Getting Started](#getting-started)
+    - [Before Django Installation](#before-django-installation)
+    - [Django Installation](#django-installation)
+  - [Create a Django Project](#create-a-django-project)
+    - [Create Django Project from `Terminal` (Recommanded)](#create-django-project-from-terminal-recommanded)
+    - [Create `.venv` Virtual Environment from `Terminal`](#create-venv-virtual-environment-from-terminal)
+    - [Create Django Project from `PyCharm`](#create-django-project-from-pycharm)
+    - [Default files of a django project (introduction)](#default-files-of-a-django-project-introduction)
+    - [Import requirements.txt for a Django project](#import-requirementstxt-for-a-django-project)
+  - [What is APP?](#what-is-app)
+    - [How to create an app by `manage.py`?](#how-to-create-an-app-by-managepy)
+    - [How to register a created app in the `settings.py` file ?](#how-to-register-a-created-app-in-the-settingspy-file-)
+    - [How to mapping `urls.py` and `views.py`](#how-to-mapping-urlspy-and-viewspy)
+    - [How to create view functions in `views.py` file](#how-to-create-view-functions-in-viewspy-file)
+  - [Running the Django Project](#running-the-django-project)
+    - [Create a new **path** in `urls.py` file mapping to the **view function** in the `views.py` file](#create-a-new-path-in-urlspy-file-mapping-to-the-view-function-in-the-viewspy-file)
+    - [Django Templates](#django-templates)
+    - [GET/POST requests](#getpost-requests)
+    - [Example Login page](#example-login-page)
+  - [`Django REST Framework` Tutorial](#django-rest-framework-tutorial)
+    - [`REST` or REpresentational State Transfer Architectural Style](#rest-or-representational-state-transfer-architectural-style)
+    - [Status Codes](#status-codes)
+  - [`APIs` in the Django REST Framework aka DRF](#apis-in-the-django-rest-framework-aka-drf)
+    - [Django REST Framework Installation](#django-rest-framework-installation)
+    - [Using the **`DRF API`**](#using-the-drf-api)
+  - [How to use `Django REST Framework` (`DRF`)](#how-to-use-django-rest-framework-drf)
+  - [Everything is an Object](#everything-is-an-object)
+
 </details>
 
 ## Getting Started
@@ -192,8 +196,8 @@
 - Type the command to create an `App` folder under the project directory
 
 ```sh
-	# The command will create a folder named app_name with a few files inside of folder
-  	> python3.11 manage.py startapp app_name
+ # The command will create a folder named app_name with a few files inside of folder
+   > python3.11 manage.py startapp app_name
 
 ```
 
@@ -270,6 +274,7 @@
 ### How to create view functions in `views.py` file
 
 - The `views.py` file is involved,
+
   - Import `from django.shortcuts import render, HttpResponse` to the `views.py` file
   - The view function that going to be implemented is based on the **path** that created in `urls.py` file
   - <span style="color:red">**IMPORTANT**</span> The `views.py` file contains all view functions, is a Python function that takes a web request and returns a web response.
@@ -308,6 +313,7 @@
 ### Create a new **path** in `urls.py` file mapping to the **view function** in the `views.py` file
 
 - `urls.py`, `views.py` and `user_list.html` files are invloved.
+
   - Add two new **path** `'user/list/'` and `'user/add/'` in the `urls.py` file
 
     ```Python
@@ -321,7 +327,8 @@
 
   ```Python
     def user_list(request):
-      # request is from the URL, it will look for the user_list.html file from all template folders.
+      # request is from the URL, it will look for the user_list.html file
+      # from all template folders.
         # based on the order of registered apps, see settings.py file
       return render(request, "user_list.html")
 
@@ -581,7 +588,7 @@ def login(request):
 <!-- ![alt text](img/add_path_in_urls.png) -->
 <img src="img/rest_api.jpg" alt="add path" width="700">
 
-### Status Codes:
+### Status Codes
 
 - [Status Codes Reference:](https://www.django-rest-framework.org/api-guide/status-codes/)
 - HTTP_100_CONTINUE
@@ -605,7 +612,7 @@ def login(request):
 ```sh
     $ pip install djangorestframework
     # or
-    $ pip3 install djangorestframework 
+    $ pip3 install djangorestframework
 ```
 
 ### Using the **`DRF API`**
@@ -704,4 +711,3 @@ def login(request):
 
     print(foo.name) # since the name is assigned, we can print it out as well.
 ```
-

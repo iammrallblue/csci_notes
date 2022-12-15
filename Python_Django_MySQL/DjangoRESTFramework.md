@@ -19,8 +19,8 @@
 ## `REST` or REpresentational State Transfer Architectural Style
 
 - 表現層狀態轉換
-- an architectuaral style for providing standards between computer systems on the web,
-- making it easier for systems to communicate with eatch other.
+- an architectural style for providing standards between computer systems on the web,
+- making it easier for systems to communicate with each other.
 - A `web API` that obeys the `REST constraints` is informally described as `RESTful`
 - especially for the data transferring back and forth front-end, and back-end
 
@@ -60,7 +60,7 @@
 
 - `models.py`, `serializers.py`, `urls.py`, `settings.py`, `views.py`
 - Edit the **`settings.py`** file
-  - beause we have to use those apps,
+  - Because we have to use those apps,
   - `rest_framework` MUST be imported
 
 ```Python

@@ -10,12 +10,6 @@
     - [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
     - [Check current Linux(Debian) version](#check-current-linuxdebian-version)
     - [Check current IP address](#check-current-ip-address)
-    - [Install `OneDrive` for Linux/Debian](#install-onedrive-for-linuxdebian)
-      - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
-      - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
-      - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
-      - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
-      - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
   - [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
     - [Dark theme](#dark-theme)
     - [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
@@ -30,7 +24,13 @@
     - [5. Sublime-text](#5-sublime-text)
     - [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
     - [7. pyenv](#7-pyenv)
-    - [8. OneDrive for Linux/Debian](#8-onedrive-for-linuxdebian)
+    - [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
+      - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
+      - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
+      - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
+      - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
+      - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
+      - [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
     - [Configure and Verify Network Connections:](#configure-and-verify-network-connections)
     - [Homebrew for Linux](#homebrew-for-linux)
 
@@ -278,41 +278,6 @@ $ uname -v
   ```
 
 ---
-
-### Install `OneDrive` for Linux/Debian
-
-The packages support the following platform architectures:
-| &nbsp;i686&nbsp; | x86_64 | ARMHF | AARCH64 |
-| :--------------: | :----: | :---: | :-----: |
-| ✔ | ✔ | ✔ | ✔ | |
-
-#### Step 1: Add the OpenSuSE Build Service repository release key
-
-Add the OpenSuSE Build Service repository release key using the following command:
-
-```sh
-wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
-```
-
-#### Step 2: Add the OpenSuSE Build Service repository
-
-Add the OpenSuSE Build Service repository using the following command:
-
-```sh
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./" | sudo tee /etc/apt/sources.list.d/onedrive.list
-```
-
-#### Step 3: Update your apt package cache
-
-Run: `sudo apt-get update`
-
-#### Step 4: Install 'onedrive'
-
-Run: `sudo apt install --no-install-recommends --no-install-suggests onedrive`
-
-#### Step 5: Read 'Known Issues' with these packages
-
-Read and understand the [known issues](#known-issues-with-installing-from-the-above-packages) with these packages below, taking any action that is needed.
 
 ## Debian 11 Configurations (2022 updated)
 
@@ -566,19 +531,52 @@ sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
 sudo rm /etc/apt/sources.list.d/vscodium.list
 ```
 
-### 8. OneDrive for Linux/Debian
+### 8. Install `OneDrive` for Linux/Debian
 
-- Enable OnedriveGUI
+The packages support the following platform architectures:
+| &nbsp;i686&nbsp; | x86_64 | ARMHF | AARCH64 |
+| :--------------: | :----: | :---: | :-----: |
+| ✔ | ✔ | ✔ | ✔ | |
+
+#### Step 1: Add the OpenSuSE Build Service repository release key
+
+Add the OpenSuSE Build Service repository release key using the following command:
+
+```sh
+wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
+```
+
+#### Step 2: Add the OpenSuSE Build Service repository
+
+Add the OpenSuSE Build Service repository to `sources.list`
+
+```sh
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./" | sudo tee /etc/apt/sources.list.d/onedrive.list
+```
+
+```sh
+$ deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
+```
+
+#### Step 3: Update your apt package cache
+
+Run: `sudo apt-get update`
+
+#### Step 4: Install 'onedrive'
+
+Run: `sudo apt install --no-install-recommends --no-install-suggests onedrive`
+
+#### Step 5: Read 'Known Issues' with these packages
+
+Read and understand the [known issues](#known-issues-with-installing-from-the-above-packages) with these packages below, taking any action that is needed.
+
+#### Step 6. Enable OnedriveGUI
 
 ```sh
 $ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 ```
 
-- Add OneDrive repository to `sources.list`
-
-```sh
-$ deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
-```
+---
 
 ### Configure and Verify Network Connections:
 

@@ -177,7 +177,7 @@
 }
 ```
 - Click C/C++ Edit Configurations(UI)
-- Set up these varialbes for C/C++
+- Set up these variables for C/C++
   
 ```json
 {

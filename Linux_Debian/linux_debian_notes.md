@@ -55,35 +55,34 @@
   ]
 }
 ```
+
 - Select `clang++.exe` execution file as the compiler
 - Auto generate entry in `tasks.json` file
 
 ```json
 {
-   "type": "cppbuild",
-   "label": "Build with clang++ 14.0.6",
-   "command": "C:\\mingw64\\bin\\clang++.exe",
-   "args": [
-      "-g",
-      "-std=c++20",
-      "${workspaceFolder}\\*.cpp",
-      "-o",
-      "${fileDirname}\\${fileBasenameNoExtension}.exe"
-   ],
-   "options": {
-      "cwd": "${fileDirname}"
-   },
-   "problemMatcher": [
-      "$gcc"
-   ],
-   "group": "build",
-   "detail": "compiler: C:\\mingw64\\bin\\clang++.exe"
+  "type": "cppbuild",
+  "label": "Build with clang++ 14.0.6",
+  "command": "C:\\mingw64\\bin\\clang++.exe",
+  "args": [
+    "-g",
+    "-std=c++20",
+    "${workspaceFolder}\\*.cpp",
+    "-o",
+    "${fileDirname}\\${fileBasenameNoExtension}.exe"
+  ],
+  "options": {
+    "cwd": "${fileDirname}"
+  },
+  "problemMatcher": ["$gcc"],
+  "group": "build",
+  "detail": "compiler: C:\\mingw64\\bin\\clang++.exe"
 }
 ```
 
 ## VSCode C/C++ Development (Linux/Debian)
 
-### Install compilers 
+### Install compilers
 
 - Compilers, gcc, g++, clang, and gdb
 - Install by command `apt` package manage
@@ -96,7 +95,7 @@
 ### Install VSCode by add the APT Repository
 
 - Add APT Repository of VSCode
-  
+
 ```sh
    $ sudo apt-get install wget gpg
    $ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -106,13 +105,15 @@
    $ echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
 
 ```
+
 - Install VSCode by command `apt` package manage
-  
+
 ```sh
    $ sudo apt update
    $ sudo apt install code
 
 ```
+
 - Install VSCode Extensions for C/C++
   1. C/C++ Extension Pack
   2. Code Runner
@@ -125,125 +126,120 @@
 - Click Terminal to the `Configure Tasks...`
 - Select `g++` and `clang++` files as the compiler
 - Auto generate code in `tasks.json` file
-  
+
 ```json
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "Build with GCC 10.2.1",
-			"command": "/usr/bin/g++",
-			"args": [
-				"-fdiagnostics-color=always",
-				"-g",
-				"-std=c++20",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build",
-			"detail": "compiler: /usr/bin/g++"
-		},
-		{
-			"type": "cppbuild",
-			"label": "Build with clang++ 11.0.1-2",
-			"command": "/usr/bin/clang++",
-			"args": [
-				"-fcolor-diagnostics",
-				"-fansi-escape-codes",
-				"-g",
-				"-std=c++20",
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
-			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": "build",
-			"detail": "compiler: /usr/bin/clang++"
-		}
-	]
-}
-```
-- Click C/C++ Edit Configurations(UI)
-- Set up these variables for C/C++
-  
-```json
-{
-    "configurations": [
-        {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "gnu17",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "linux-clang-x64"
-        }
-    ],
-    "version": 4
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "Build with GCC 10.2.1",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-std=c++20",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "compiler: /usr/bin/g++"
+    },
+    {
+      "type": "cppbuild",
+      "label": "Build with clang++ 11.0.1-2",
+      "command": "/usr/bin/clang++",
+      "args": [
+        "-fcolor-diagnostics",
+        "-fansi-escape-codes",
+        "-g",
+        "-std=c++20",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "detail": "compiler: /usr/bin/clang++"
+    }
+  ]
 }
 ```
 
---- 
+- Click C/C++ Edit Configurations(UI)
+- Set up these variables for C/C++
+
+```json
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": ["${workspaceFolder}/**"],
+      "defines": [],
+      "compilerPath": "/usr/bin/clang",
+      "cStandard": "gnu17",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "linux-clang-x64"
+    }
+  ],
+  "version": 4
+}
+```
+
+---
 
 ### Debian (APT Repository) i386 update error
 
-- The i386 update error description 
+- The i386 update error description
 
-   ```text
-   N: Skipping acquire of configured file 'main/binary-i386/Packages'
-   as repository 'https://packages.microsoft.com/repos/vscode stable InRelease'
-   doesn't support architecture 'i386'
-   ```
+  ```text
+  N: Skipping acquire of configured file 'main/binary-i386/Packages'
+  as repository 'https://packages.microsoft.com/repos/vscode stable InRelease'
+  doesn't support architecture 'i386'
+  ```
 
 - Solution
 
-   ```sh
-   $ dpkg --print-foreign-architectures
-   # i386
-   $ sudo dpkg --remove-architecture i386
-   $ sudo apt update
-   # remove i386, fix the error
-   ```
+  ```sh
+  $ dpkg --print-foreign-architectures
+  # i386
+  $ sudo dpkg --remove-architecture i386
+  $ sudo apt update
+  # remove i386, fix the error
+  ```
 
 ### Check current Linux(Debian) version
 
-   ```sh
-   $ uname -a
-   # -a, --all print all information, in the following order,
-   # result: Linux db16 5.10.0-18-amd64 #1 SMP Debian 5.10.140-1 (2022-09-02) x86_64 GNU/Linux
+```sh
+$ uname -a
+# -a, --all print all information, in the following order,
+# result: Linux db16 5.10.0-18-amd64 #1 SMP Debian 5.10.140-1 (2022-09-02) x86_64 GNU/Linux
 
-   $ uname -v
-   # -v, --kernel-version   print the kernel version
-   # result: #1 SMP Debian 5.10.140-1 (2022-09-02)
-   ```
+$ uname -v
+# -v, --kernel-version   print the kernel version
+# result: #1 SMP Debian 5.10.140-1 (2022-09-02)
+```
 
 ### Check current IP address
 
 - Show all info of IP address
 
-   ```sh
-   $ ifconfig
+  ```sh
+  $ ifconfig
 
-   $ ip a
+  $ ip a
 
-   $ ip addr show
+  $ ip addr show
 
-   ```
+  ```
 
 ---
 
@@ -252,7 +248,7 @@
 The packages support the following platform architectures:
 | &nbsp;i686&nbsp; | x86_64 | ARMHF | AARCH64 |
 | :--------------: | :----: | :---: | :-----: |
-|        ✔         |   ✔    |   ✔   |    ✔    |  |
+| ✔ | ✔ | ✔ | ✔ | |
 
 #### Step 1: Add the OpenSuSE Build Service repository release key
 
@@ -285,9 +281,11 @@ Read and understand the [known issues](#known-issues-with-installing-from-the-ab
 ## Debian 11 Configurations (2022 updated)
 
 ### Dark theme
+
 - For Debian, Go **System Setting**
 
 ### Terminal Configuration using ZSH as default shell
+
 - Reference: [zsh wiki](https://wiki.debian.org/Zsh)
 
 - Step 1: Install zsh by `apt` package manage
@@ -300,14 +298,14 @@ $ which zsh
 ```
 
 - Step 2: Set the `ZSH` as default shell
- 
+
 ```sh
 $ chsh
 # enter password
 
    Changing the login shell for joh
    Enter the new value, or press ENTER for the default
-   Login Shell [/usr/bin/zsh]: 
+   Login Shell [/usr/bin/zsh]:
    $ # press enter to select default shell
 
 # check default shell
@@ -327,7 +325,7 @@ $ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-
 
 ```sh
 $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/username/.oh-my-zsh/custom/themes/powerlevel10k
-   
+
 $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
@@ -340,6 +338,7 @@ $ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:
 ```
 
 ### Install `cheat.sh` globally setting
+
 - Download
 
 ```sh
@@ -347,11 +346,12 @@ curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh && sudo chmod +x
 ```
 
 - Setting `cht.sh` to short `cht`
+
 ```sh
 alias cht="cht.sh"
 ```
 
-### Change default editor 
+### Change default editor
 
 ```sh
 sudo update-alternatives --config editor
@@ -360,82 +360,84 @@ sudo update-alternatives --set editor /usr/bin/emacs
 ```
 
 ### Web administration default user
+
 - BackupPC can be managed through its web interface: http://hostname/backuppc/
 
-- For that purpose, a web user named 'backuppc' pw: 'T****N'
-
-
+- For that purpose, a web user named 'backuppc' pw: 'T\*\*\*\*N'
 
 ## Softwares for Linux/Debian
 
 ### 1. MySQL
 
-   1. Setup MySQL
-      1.1 APT repository
-      1.2 sudo dpkg -i ./apt.\*\*.deb
-      1.3 sudo apt update
-      1.4 sudo apt install mysql-server
-      1.5 enter password (twice) for root user
-      1.6 "Use Strong Password Encryption (RECOMMENDED)
-      1.7 sudo pat policy mysql-server
-      1.8. sudo systemctl enable mysql
-      1.9. sudo systemctl start mysql
-      1.10. systemctl status mysql
+1.  Setup MySQL
+    1.1 APT repository
+    1.2 sudo dpkg -i ./apt.\*\*.deb
+    1.3 sudo apt update
+    1.4 sudo apt install mysql-server
+    1.5 enter password (twice) for root user
+    1.6 "Use Strong Password Encryption (RECOMMENDED)
+    1.7 sudo pat policy mysql-server
+    1.8. sudo systemctl enable mysql
+    1.9. sudo systemctl start mysql
+    1.10. systemctl status mysql
 
-   2. login:
-      2.1 mysql -uroot -p
-      2.2 show databases;
+2.  login:
+    2.1 mysql -uroot -p
+    2.2 show databases;
 
 ### 2. Google Chrome
 
-   1. Setup Chrome
-      1.1 Add APT repository
-      wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add
-      1.2 add to list
-      echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/chrome.list
-      1.3 sudo apt update
-      1.4 sudo apt install google-chrome-stable
+1.  Setup Chrome
+    1.1 Add APT repository
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add
+    1.2 add to list
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/chrome.list
+    1.3 sudo apt update
+    1.4 sudo apt install google-chrome-stable
 
 ### 3. Microsoft Edge
 
-   1. Setup Edge
-      1.1 Add APT repository
-      sudo wget -O- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
-      1.2 add to list
-      echo 'deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main' | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
-      1.3 sudo apt update
+1.  Setup Edge
+    1.1 Add APT repository
+    sudo wget -O- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
+    1.2 add to list
+    echo 'deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main' | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+    1.3 sudo apt update
 
-      1.4 sudo apt install microsoft-edge-stable -y
+    1.4 sudo apt install microsoft-edge-stable -y
 
 (CAUTIONS DATA and TIME MUST BE CORRECT)
 
 ### 4. Visual Studio Code and Code insiders
-   https://www.itzgeek.com/how-tos/linux/debian/how-to-install-visual-studio-code-on-debian-11-debian-10.html
 
-   1. Setup Code
-      1.1 add repository
-      curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg
+https://www.itzgeek.com/how-tos/linux/debian/how-to-install-visual-studio-code-on-debian-11-debian-10.html
 
-      1.2 add to sources.list
-      echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+1.  Setup Code
+    1.1 add repository
+    curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg
 
-      1.3 sudo apt update
+    1.2 add to sources.list
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
 
-      1.4 sudo apt install code && sudo apt install code-insiders
+    1.3 sudo apt update
 
-      1.5 set code as default editor
-      sudo update-alternatives --set editor /usr/bin/code
+    1.4 sudo apt install code && sudo apt install code-insiders
 
-### 5. Sublime-text 
-   https://linuxhint.com/install-sublime-debian-11/
+    1.5 set code as default editor
+    sudo update-alternatives --set editor /usr/bin/code
 
-   1. Setup Sublime-text
-      1.1 add to sources.list
-      "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-      1.2 add repository
-      wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-   
-   2. Sublime Text 4 (Invalid)
+### 5. Sublime-text
+
+https://linuxhint.com/install-sublime-debian-11/
+
+1.  Setup Sublime-text
+    1.1 add to sources.list
+    "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    1.2 add repository
+    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+
+2.  Sublime Text 4 (Invalid)
+
 ```text
 —– BEGIN LICENSE —–
 Mifeng User
@@ -453,11 +455,13 @@ B1D4C178 2F9DDB16 ABAA74E5 95304BEF
 ```
 
 ### 6. Asian inputs `fcitx5`
+
 - Cannot connect to fcitx by dbus, is fcitx running?
-https://www.cnblogs.com/tjpicole/p/16249251.html
+  https://www.cnblogs.com/tjpicole/p/16249251.html
 
 - Repair `fcitx5` Asian inputs (zhuyin, mozc, etc...)
-  - This happens when fcitx5 could not start automatically 
+
+  - This happens when fcitx5 could not start automatically
 
 - Step 1: Reinstall fcitx5 and its relative dependencies
 
@@ -465,7 +469,8 @@ https://www.cnblogs.com/tjpicole/p/16249251.html
 apt install --install-recommends fcitx5 fcitx5-chinese-addons
 apt install gnome-shell-extension-kimpanel
 ```
-- Step 2: Configure Asian UTF-8 environment `locales` 
+
+- Step 2: Configure Asian UTF-8 environment `locales`
 
 ```sh
 sudo dpkg-reconfigure locales
@@ -480,7 +485,8 @@ XMODIFIERS=@im=fcitx
 INPUT_METHOD=fcitx
 SDL_IM_MODULE=fcitx
 ```
-- Step 4: Add link `ln` 
+
+- Step 4: Add link `ln`
 
 ```sh
 ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
@@ -489,11 +495,15 @@ cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
 ```
 
 ### 7. pyenv
+
 - pre-requirement: (Linux/Debian)
+
 ```sh
 $ sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 ```
+
 ### 8. OneDrive for Linux/Debian
+
 # enable OnedriveGUI
 
 nohup python3 OneDriveGUI.py > /dev/null 2>&1&
@@ -503,26 +513,32 @@ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
 
 - Installing a system-wide Python
-If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
+  If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
+
 ```sh
 sudo python-build 3.3.2 /usr/local/
 ```
+
 If you didn’t like this code editor and in the future, you want to remove it completely from your system then that is possible as well using the command terminal.
 
 - For Snap users:
+
 ```sh
 sudo snap remove codium
 ```
+
 - For APT users:
+
 ```sh
 sudo apt autoremove --purge codium
 ```
+
 - To remove the repo and GPG key:
+
 ```sh
 sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
 sudo rm /etc/apt/sources.list.d/vscodium.list
 ```
-
 
 ### Configure and Verify Network Connections:
 
@@ -584,16 +600,22 @@ sudo rm /etc/apt/sources.list.d/vscodium.list
     		configure network, or group, passwd,
 
 ### Homebrew for Linux
-Steps: 
+
+Steps:
+
 1. Terminal:
+
 - Install Homebrew for Linux/Debian
+
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-2. Terminal: 
+
+2. Terminal:
+
 - Add Homebrew to PATH and the .profile
 - Execute each to add paths.
-  
+
 ```sh
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 

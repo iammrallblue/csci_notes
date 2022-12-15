@@ -1,3 +1,39 @@
+- [Linux/Debian Notes](#linuxdebian-notes)
+  - [VSCode C/C++ Development (Windows)](#vscode-cc-development-windows)
+    - [mingw64 Configurations for C/C++ (Windows)](#mingw64-configurations-for-cc-windows)
+    - [VSCode Configurations for C/C++ (Windows)](#vscode-configurations-for-cc-windows)
+    - [Configurations Compilers in the VSCode (Windows)](#configurations-compilers-in-the-vscode-windows)
+  - [VSCode C/C++ Development (Linux/Debian)](#vscode-cc-development-linuxdebian)
+    - [Install compilers](#install-compilers)
+    - [Install VSCode by add the APT Repository](#install-vscode-by-add-the-apt-repository)
+    - [Configurations Compilers in the VSCode (Linux/Debian)](#configurations-compilers-in-the-vscode-linuxdebian)
+    - [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
+    - [Check current Linux(Debian) version](#check-current-linuxdebian-version)
+    - [Check current IP address](#check-current-ip-address)
+    - [Install `OneDrive` for Linux/Debian](#install-onedrive-for-linuxdebian)
+      - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
+      - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
+      - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
+      - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
+      - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
+  - [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
+    - [Dark theme](#dark-theme)
+    - [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
+    - [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
+    - [Change default editor](#change-default-editor)
+    - [Web administration default user](#web-administration-default-user)
+  - [Softwares for Linux/Debian](#softwares-for-linuxdebian)
+    - [1. MySQL](#1-mysql)
+    - [2. Google Chrome](#2-google-chrome)
+    - [3. Microsoft Edge](#3-microsoft-edge)
+    - [4. Visual Studio Code and Code insiders](#4-visual-studio-code-and-code-insiders)
+    - [5. Sublime-text](#5-sublime-text)
+    - [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
+    - [7. pyenv](#7-pyenv)
+    - [8. OneDrive for Linux/Debian](#8-onedrive-for-linuxdebian)
+    - [Configure and Verify Network Connections:](#configure-and-verify-network-connections)
+    - [Homebrew for Linux](#homebrew-for-linux)
+
 # Linux/Debian Notes
 
 ## VSCode C/C++ Development (Windows)
@@ -502,16 +538,6 @@ cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
 $ sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 ```
 
-### 8. OneDrive for Linux/Debian
-
-# enable OnedriveGUI
-
-nohup python3 OneDriveGUI.py > /dev/null 2>&1&
-
-# onedrive.list
-
-deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
-
 - Installing a system-wide Python
   If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
 
@@ -538,6 +564,20 @@ sudo apt autoremove --purge codium
 ```sh
 sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
 sudo rm /etc/apt/sources.list.d/vscodium.list
+```
+
+### 8. OneDrive for Linux/Debian
+
+- Enable OnedriveGUI
+
+```sh
+$ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
+```
+
+- Add OneDrive repository to `sources.list`
+
+```sh
+$ deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
 ```
 
 ### Configure and Verify Network Connections:

@@ -2,7 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-    int a = 5;  // //variable declaration
+    int a = 5;               // //variable declaration
     int *p = &a;             // the address of a, or p = &a
     printf("a = %d\n", a);   // a = 5
     *p = 12;                 // dereferencing, same as a = 12

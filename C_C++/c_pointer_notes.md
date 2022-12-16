@@ -26,7 +26,7 @@
 ### Using a Pointer
 
 - Using a pointer
-- `* operator ` is the indirection operator, to declare a pointer
+- `* operator` is the indirection operator, to declare a pointer
 - To get the address of a variable, we use the ampersand `& operator`
 
 <img src="img/variable_and_pointer.png" alt="pointer" width="800">

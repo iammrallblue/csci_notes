@@ -458,7 +458,8 @@ B1D4C178 2F9DDB16 ABAA74E5 95304BEF
 ### 6. Asian inputs `fcitx5`
 
 - Cannot connect to fcitx by dbus, is fcitx running?
-  https://www.cnblogs.com/tjpicole/p/16249251.html
+- Reference: [Input install](https://www.cnblogs.com/tjpicole/p/16249251.html)
+  , [Setup Fcitx5](https://fcitx-im.org/wiki/Setup_Fcitx_5#XDG_Autostart)
 
 - Repair `fcitx5` Asian inputs (zhuyin, mozc, etc...)
 

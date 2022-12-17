@@ -1,54 +1,61 @@
-- [Linux/Debian Notes](#linuxdebian-notes)
-  - [VSCode C/C++ Development (Windows)](#vscode-cc-development-windows)
-    - [mingw64 Configurations for C/C++ (Windows)](#mingw64-configurations-for-cc-windows)
-    - [VSCode Configurations for C/C++ (Windows)](#vscode-configurations-for-cc-windows)
-    - [Configurations Compilers in the VSCode (Windows)](#configurations-compilers-in-the-vscode-windows)
-  - [VSCode C/C++ Development (Linux/Debian)](#vscode-cc-development-linuxdebian)
-    - [Install compilers](#install-compilers)
-    - [Install VSCode by add the APT Repository](#install-vscode-by-add-the-apt-repository)
-    - [Configurations Compilers in the VSCode (Linux/Debian)](#configurations-compilers-in-the-vscode-linuxdebian)
-    - [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
-    - [Check current Linux(Debian) version](#check-current-linuxdebian-version)
-    - [Check current IP address](#check-current-ip-address)
-  - [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
-    - [Dark theme](#dark-theme)
-    - [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
-    - [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
-    - [Change default editor](#change-default-editor)
-    - [Web administration default user](#web-administration-default-user)
-  - [Softwares for Linux/Debian](#softwares-for-linuxdebian)
-    - [1. MySQL](#1-mysql)
-    - [2. Google Chrome](#2-google-chrome)
-    - [3. Microsoft Edge](#3-microsoft-edge)
-    - [4. Visual Studio Code and Code insiders](#4-visual-studio-code-and-code-insiders)
-    - [5. Sublime-text](#5-sublime-text)
-    - [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
-    - [7. pyenv](#7-pyenv)
-    - [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
-      - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
-      - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
-      - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
-      - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
-      - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
-      - [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
-    - [Configure and Verify Network Connections:](#configure-and-verify-network-connections)
-    - [Homebrew for Linux](#homebrew-for-linux)
-
 # Linux/Debian Notes
+
+- [Linux/Debian Notes](#linuxdebian-notes)
+	- [VSCode C/C++ Development (Windows)](#vscode-cc-development-windows)
+		- [mingw64 Configurations for C/C++ (Windows)](#mingw64-configurations-for-cc-windows)
+		- [VSCode Configurations for C/C++ (Windows)](#vscode-configurations-for-cc-windows)
+		- [Configurations Compilers in the VSCode (Windows)](#configurations-compilers-in-the-vscode-windows)
+	- [VSCode C/C++ Development (Linux/Debian)](#vscode-cc-development-linuxdebian)
+		- [Install compilers](#install-compilers)
+		- [Install VSCode by add the APT Repository](#install-vscode-by-add-the-apt-repository)
+		- [Configurations Compilers in the VSCode (Linux/Debian)](#configurations-compilers-in-the-vscode-linuxdebian)
+		- [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
+		- [Check current Linux(Debian) version](#check-current-linuxdebian-version)
+		- [Check current IP address](#check-current-ip-address)
+	- [`Path` and `Path` files in macOS](#path-and-path-files-in-macos)
+		- [Find out all `Path` files in the macOS](#find-out-all-path-files-in-the-macos)
+	- [VSCode C/C++ Development (macOS)](#vscode-cc-development-macos)
+		- [Configure the `task.josn` file for C/C++](#configure-the-taskjosn-file-for-cc)
+		- [Configure `c_cpp_properties.json`](#configure-c_cpp_propertiesjson)
+		- [Configure `.markdownlint.json` file for Markdown](#configure-markdownlintjson-file-for-markdown)
+	- [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
+		- [Dark theme](#dark-theme)
+		- [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
+		- [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
+		- [Change default editor](#change-default-editor)
+		- [Web administration default user](#web-administration-default-user)
+	- [Softwares for Linux/Debian](#softwares-for-linuxdebian)
+		- [1. MySQL](#1-mysql)
+		- [2. Install Google Chrome](#2-install-google-chrome)
+		- [3. Install Microsoft Edge](#3-install-microsoft-edge)
+		- [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
+		- [4. Install Visual Studio Code and Code insiders](#4-install-visual-studio-code-and-code-insiders)
+		- [5. Install Sublime-text](#5-install-sublime-text)
+		- [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
+		- [7. pyenv](#7-pyenv)
+		- [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
+			- [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
+			- [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
+			- [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
+			- [Step 4: Install 'onedrive'](#step-4-install-onedrive)
+			- [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
+			- [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
+		- [Configure and Verify Network Connections](#configure-and-verify-network-connections)
+		- [Network configuration files](#network-configuration-files)
+		- [Homebrew for Linux](#homebrew-for-linux)
 
 ## VSCode C/C++ Development (Windows)
 
 ### mingw64 Configurations for C/C++ (Windows)
 
 - [Download mingw64](https://winlibs.com/)
-- Configure `Environment variables ` and `Path` of compilers
-
+- Configure `Environment variables` and `Path` of compilers
   - Press Windows key then type `env`
   - Click `Environment Variables`
   - Click `Path` in the System variables
   - Add the path of `mingw64` to `Path`
 
-    <img src="img/windows_env_variables.png" alt="create project 02" width="500">
+<img src="img/windows_env_variables.png" alt="create project 02" width="500">
 
 ### VSCode Configurations for C/C++ (Windows)
 
@@ -268,16 +275,104 @@ $ uname -v
 
 - Show all info of IP address
 
-  ```sh
-  $ ifconfig
+```sh
+$ ifconfig
 
-  $ ip a
+$ ip a
 
-  $ ip addr show
+$ ip addr show
 
-  ```
+```
 
 ---
+
+## `Path` and `Path` files in macOS
+
+### Find out all `Path` files in the macOS
+
+- These files contain paths (high to low priority)
+  - System level `/etc/profile` , `/etc/bashrc`, and `/etc/paths`
+  - User level `~/.bash_profile`, `~/.profile` and `~/.bashrc`
+  - User level `~/zprofile`, `~/.zsh_profile` and `~/.zshrc`
+- how to find out all current paths in macOS
+
+```sh
+echo $PATH
+```
+
+- How to export a `Path`
+
+```sh
+export PATH="/usr/local/anaconda3/bin:$PATH"
+```
+
+- A utility `path_helper` is used to set the PATH env variable
+  based on the content of `/etc/paths` file
+  and content of files in `/etc/paths.d` directory.
+
+```sh
+eval `/usr/libexec/path_helper -s`
+```
+
+- Set path for JAVA JDK
+
+```sh
+export JDK1.7=/usr/apps/jdk1.7
+export JDK1.8=/usr/apps/jdk1.8
+export PATH=$JDK1.7/bin
+```
+
+## VSCode C/C++ Development (macOS)
+
+### Configure the `task.josn` file for C/C++
+
+- Paths of compilers form homebrew
+- `gcc`, `g++`, `gdb`, and `clang` from Homebrew
+
+```sh
+/usr/local/Cellar/
+# path for llvm clang
+/usr/local/Cellar/llvm/15.0.6/bin/clang-15
+/usr/local/bin/
+```
+
+- make link for compiler clang
+
+```sh
+ln -s /usr/local/Cellar/llvm/15.0.6/bin/clang-15 /usr/local/bin
+```
+
+### Configure `c_cpp_properties.json`
+
+```json
+{
+  "configurations": [
+    {
+      "name": "Mac",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/local/bin/",
+        "/Library/Developer/CommandLineTools/usr/bin",
+        "/usr/local/include"
+      ],
+      "defines": [],
+      "macFrameworkPath": [
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+      ],
+      "cStandard": "c17",
+      "compilerPath": "/usr/bin/gcc",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "macos-gcc-x64",
+      "compilerArgs": ["-Wall, -Werror, -pedantic-errors"]
+    }
+  ],
+  "version": 4
+}
+```
+
+### Configure `.markdownlint.json` file for Markdown
+
+- none
 
 ## Debian 11 Configurations (2022 updated)
 
@@ -362,7 +457,7 @@ sudo update-alternatives --set editor /usr/bin/emacs
 
 ### Web administration default user
 
-- BackupPC can be managed through its web interface: http://hostname/backuppc/
+- BackupPC can be managed through its web interface: <http://hostname/backuppc/>
 
 - For that purpose, a web user named 'backuppc' pw: 'T\*\*\*\*N'
 
@@ -370,74 +465,107 @@ sudo update-alternatives --set editor /usr/bin/emacs
 
 ### 1. MySQL
 
-1.  Setup MySQL
-    1.1 APT repository
-    1.2 sudo dpkg -i ./apt.\*\*.deb
-    1.3 sudo apt update
-    1.4 sudo apt install mysql-server
-    1.5 enter password (twice) for root user
-    1.6 "Use Strong Password Encryption (RECOMMENDED)
-    1.7 sudo pat policy mysql-server
-    1.8. sudo systemctl enable mysql
-    1.9. sudo systemctl start mysql
-    1.10. systemctl status mysql
+1. Setup MySQL
+   1.1 APT repository
+   1.2 sudo dpkg -i ./apt.\*\*.deb
+   1.3 sudo apt update
+   1.4 sudo apt install mysql-server
+   1.5 enter password (twice) for root user
+   1.6 "Use Strong Password Encryption (RECOMMENDED)
+   1.7 sudo pat policy mysql-server
+   1.8. sudo systemctl enable mysql
+   1.9. sudo systemctl start mysql
+   1.10. systemctl status mysql
 
-2.  login:
-    2.1 mysql -uroot -p
-    2.2 show databases;
+2. login:
+   2.1 mysql -uroot -p
+   2.2 show databases;
 
-### 2. Google Chrome
+### 2. Install Google Chrome
 
-1.  Setup Chrome
-    1.1 Add APT repository
-    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add
-    1.2 add to list
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/chrome.list
-    1.3 sudo apt update
-    1.4 sudo apt install google-chrome-stable
+- Add APT repository
 
-### 3. Microsoft Edge
+```sh
+wget -q -O - <https://dl.google.com/linux/linux_signing_key.pub> | sudo apt-key add
+```
 
-1.  Setup Edge
-    1.1 Add APT repository
-    sudo wget -O- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
-    1.2 add to list
-    echo 'deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main' | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
-    1.3 sudo apt update
+- Add to the `sources.list`
 
-    1.4 sudo apt install microsoft-edge-stable -y
+```sh
+echo "deb [arch=amd64] <http://dl.google.com/linux/chrome/deb/> stable main" | sudo tee /etc/apt/sources.list.d/chrome.list
+```
 
-(CAUTIONS DATA and TIME MUST BE CORRECT)
+- Install by `apt` package manage
 
-### 4. Visual Studio Code and Code insiders
+```sh
+$ sudo apt update
+$ sudo apt install google-chrome-stable
+```
 
-https://www.itzgeek.com/how-tos/linux/debian/how-to-install-visual-studio-code-on-debian-11-debian-10.html
+### 3. Install Microsoft Edge
 
-1.  Setup Code
-    1.1 add repository
-    curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg
+- Add APT repository
 
-    1.2 add to sources.list
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+```sh
+$ sudo wget -O- <https://packages.microsoft.com/keys/microsoft.asc> | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
+```
 
-    1.3 sudo apt update
+- Add to the `sources.list`
 
-    1.4 sudo apt install code && sudo apt install code-insiders
+```sh
+echo 'deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] <https://packages.microsoft.com/repos/edge> stable main' | sudo tee /etc/apt/sources.list.d/microsoft-edge.list
+```
 
-    1.5 set code as default editor
-    sudo update-alternatives --set editor /usr/bin/code
+```sh
+$ sudo apt update
+$ sudo apt install microsoft-edge-stable -y
+```
 
-### 5. Sublime-text
+### _**(CAUTIONS DATA and TIME MUST BE CORRECT)**_
 
-https://linuxhint.com/install-sublime-debian-11/
+### 4. Install Visual Studio Code and Code insiders
 
-1.  Setup Sublime-text
-    1.1 add to sources.list
-    "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-    1.2 add repository
-    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+- [Reference read](https://www.itzgeek.com/how-tos/linux/debian/how-to-install-visual-studio-code-on-debian-11-debian-10.html)
 
-2.  Sublime Text 4 (Invalid)
+- Add the VSCode repository
+
+```sh
+curl -sSL <https://packages.microsoft.com/keys/microsoft.asc> | sudo gpg --dearmor -o /usr/share/keyrings/ms-vscode-keyring.gpg
+```
+
+- Add to the `sources.list`
+
+```sh
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] <https://packages.microsoft.com/repos/vscode> stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+```
+
+- Install by `apt` package manage
+
+```sh
+$ sudo apt update
+$ sudo apt install code && sudo apt install code-insiders
+$ set code as default editor
+$ sudo update-alternatives --set editor /usr/bin/code
+
+```
+
+### 5. Install Sublime-text
+
+- [Reference read](https://linuxhint.com/install-sublime-debian-11/)
+
+- Add the Sublime-text repository
+
+```sh
+$ wget -qO - <https://download.sublimetext.com/sublimehq-pub.gpg> | sudo apt-key add -
+```
+
+- Add to the `sources.list`
+
+```sh
+$ "deb <https://download.sublimetext.com/> apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+```
+
+- Sublime Text 4 (Invalid)
 
 ```text
 —– BEGIN LICENSE —–
@@ -508,7 +636,7 @@ $ sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev
   If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
 
 ```sh
-sudo python-build 3.3.2 /usr/local/
+$ sudo python-build 3.3.2 /usr/local/
 ```
 
 If you didn’t like this code editor and in the future, you want to remove it completely from your system then that is possible as well using the command terminal.
@@ -516,20 +644,20 @@ If you didn’t like this code editor and in the future, you want to remove it c
 - For Snap users:
 
 ```sh
-sudo snap remove codium
+$ sudo snap remove codium
 ```
 
 - For APT users:
 
 ```sh
-sudo apt autoremove --purge codium
+$ sudo apt autoremove --purge codium
 ```
 
 - To remove the repo and GPG key:
 
 ```sh
-sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
-sudo rm /etc/apt/sources.list.d/vscodium.list
+$ sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
+$ sudo rm /etc/apt/sources.list.d/vscodium.list
 ```
 
 ### 8. Install `OneDrive` for Linux/Debian
@@ -544,7 +672,7 @@ The packages support the following platform architectures:
 Add the OpenSuSE Build Service repository release key using the following command:
 
 ```sh
-wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
+$ wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
 ```
 
 #### Step 2: Add the OpenSuSE Build Service repository
@@ -569,7 +697,7 @@ Run: `sudo apt install --no-install-recommends --no-install-suggests onedrive`
 
 #### Step 5: Read 'Known Issues' with these packages
 
-Read and understand the [known issues](#known-issues-with-installing-from-the-above-packages) with these packages below, taking any action that is needed.
+Read and understand the [known issues]
 
 #### Step 6. Enable OnedriveGUI
 
@@ -579,88 +707,90 @@ $ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 
 ---
 
-### Configure and Verify Network Connections:
+### Configure and Verify Network Connections
 
-    network commands:
+Network commands:
 
-    	1. ifconfig
-    		sudo apt install net-tools
+- Using command `ifconfig`
 
-    	2. ip addr
+```sh
+sudo apt install net-tools
+```
 
-    		1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    		    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    		    inet 127.0.0.1/8 scope host lo
-    		       valid_lft forever preferred_lft forever
-    		    inet6 ::1/128 scope host
-    	       valid_lft forever preferred_lft forever
-    		2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    		    link/ether dc:a6:32:1a:44:7c brd ff:ff:ff:ff:ff:ff
-    		    inet 192.168.1.72/24 brd 192.168.1.255 scope global noprefixroute eth0
-    		       valid_lft forever preferred_lft forever
-    		    inet6 fe80::d34f:69c7:7e8:ea2/64 scope link
-    		       valid_lft forever preferred_lft forever
-    		3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    		    link/ether dc:a6:32:1a:44:7d brd ff:ff:ff:ff:ff:ff
-    		    inet 192.168.1.73/24 brd 192.168.1.255 scope global dynamic noprefixroute wlan0
-    		       valid_lft 69545sec preferred_lft 58745sec
-    		    inet6 fe80::3691:6cd9:e5a2:3a6f/64 scope link
-    		       valid_lft forever preferred_lft forever
-    		4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 100
-    		    link/none
-    		    inet 10.8.0.1/24 brd 10.8.0.255 scope global tun0
-    		       valid_lft forever preferred_lft forever
-    		    inet6 fe80::fc31:1363:5bba:5142/64 scope link stable-privacy
-    		       valid_lft forever preferred_lft forever
-    	3. ip route (display the routing table)
-    		default via 192.168.1.254 dev wlp0s20f3 proto dhcp metric 600
-    		169.254.0.0/16 dev wlp0s20f3 scope link metric 1000
-    		192.168.1.0/24 dev wlp0s20f3 proto kernel scope link src 192.168.1.172 metric 600
+- Using command `ip addr`
 
-    3. Testing DNS:
-    	dig (DNS lookup utility)
-    		dig google.com
+```text
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+	link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+	inet 127.0.0.1/8 scope host lo
+		valid_lft forever preferred_lft forever
+	inet6 ::1/128 scope host
+	  valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+	link/ether dc:a6:32:1a:44:7c brd ff:ff:ff:ff:ff:ff
+	inet 192.168.1.72/24 brd 192.168.1.255 scope global noprefixroute eth0
+		valid_lft forever preferred_lft forever
+	inet6 fe80::d34f:69c7:7e8:ea2/64 scope link
+		valid_lft forever preferred_lft forever
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+	link/ether dc:a6:32:1a:44:7d brd ff:ff:ff:ff:ff:ff
+	inet 192.168.1.73/24 brd 192.168.1.255 scope global dynamic noprefixroute wlan0
+		valid_lft 69545sec preferred_lft 58745sec
+	inet6 fe80::3691:6cd9:e5a2:3a6f/64 scope link
+		valid_lft forever preferred_lft forever
 
-    		dig @127.0.0.1 google.com
-    		dig @8.8.8.8 google.com
+```
 
-    	nslookup
-    		nslookup google.com
-    	host
-    		host google.com
+- Using command `ip route` or `ip route | grep default` (display the routing table)
+- Testing DNS by using command `dig`:
 
-    Network configuration files
+```sh
+$ dig (DNS lookup utility)
+$ dig google.com
 
-    	/etc/hosts
-    		configure dns
-    		ex. 127.0.0.1 google.com
+$ dig @127.0.0.1 google.com
+$ dig @8.8.8.8 google.com
+```
 
-    	/etc/nsswitch.conf
-    		configure network, or group, passwd,
+- Using command `nslookup` and `host`
+
+```sh
+$ nslookup google.com
+$ host google.com
+```
+
+### Network configuration files
+
+- Editing the `hosts`, `/etc/hosts` file
+
+```text
+configure dns
+ex. 127.0.0.1 google.com
+```
+
+- Editing the `nsswitch.conf`, `/etc/nsswitch.conf` file
+
+```text
+configure network, or group, passwd,
+```
 
 ### Homebrew for Linux
 
-Steps:
-
-1. Terminal:
-
-- Install Homebrew for Linux/Debian
+- Step 1: Install Homebrew for Linux/Debian
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Terminal:
-
-- Add Homebrew to PATH and the .profile
-- Execute each to add paths.
+- Step 2: Add Homebrew to PATH and the .profile
+  - Execute each to add paths.
 
 ```sh
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+$ test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+$ test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+$ test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
 
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+$ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 ```

@@ -7,7 +7,7 @@
 - the nuts and bolts of the Internet
 - the basic hardware and software components that make up the Internet.
 
-### 1.2 What is the protocal?
+### 1.2 What is the protocol?
 
 ### Network edge
 

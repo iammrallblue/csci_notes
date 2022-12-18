@@ -1,48 +1,49 @@
 # Linux/Debian Notes
 
 - [Linux/Debian Notes](#linuxdebian-notes)
-	- [VSCode C/C++ Development (Windows)](#vscode-cc-development-windows)
-		- [mingw64 Configurations for C/C++ (Windows)](#mingw64-configurations-for-cc-windows)
-		- [VSCode Configurations for C/C++ (Windows)](#vscode-configurations-for-cc-windows)
-		- [Configurations Compilers in the VSCode (Windows)](#configurations-compilers-in-the-vscode-windows)
-	- [VSCode C/C++ Development (Linux/Debian)](#vscode-cc-development-linuxdebian)
-		- [Install compilers](#install-compilers)
-		- [Install VSCode by add the APT Repository](#install-vscode-by-add-the-apt-repository)
-		- [Configurations Compilers in the VSCode (Linux/Debian)](#configurations-compilers-in-the-vscode-linuxdebian)
-		- [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
-		- [Check current Linux(Debian) version](#check-current-linuxdebian-version)
-		- [Check current IP address](#check-current-ip-address)
-	- [`Path` and `Path` files in macOS](#path-and-path-files-in-macos)
-		- [Find out all `Path` files in the macOS](#find-out-all-path-files-in-the-macos)
-	- [VSCode C/C++ Development (macOS)](#vscode-cc-development-macos)
-		- [Configure the `task.josn` file for C/C++](#configure-the-taskjosn-file-for-cc)
-		- [Configure `c_cpp_properties.json`](#configure-c_cpp_propertiesjson)
-		- [Configure `.markdownlint.json` file for Markdown](#configure-markdownlintjson-file-for-markdown)
-	- [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
-		- [Dark theme](#dark-theme)
-		- [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
-		- [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
-		- [Change default editor](#change-default-editor)
-		- [Web administration default user](#web-administration-default-user)
-	- [Softwares for Linux/Debian](#softwares-for-linuxdebian)
-		- [1. MySQL](#1-mysql)
-		- [2. Install Google Chrome](#2-install-google-chrome)
-		- [3. Install Microsoft Edge](#3-install-microsoft-edge)
-		- [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
-		- [4. Install Visual Studio Code and Code insiders](#4-install-visual-studio-code-and-code-insiders)
-		- [5. Install Sublime-text](#5-install-sublime-text)
-		- [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
-		- [7. pyenv](#7-pyenv)
-		- [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
-			- [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
-			- [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
-			- [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
-			- [Step 4: Install 'onedrive'](#step-4-install-onedrive)
-			- [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
-			- [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
-		- [Configure and Verify Network Connections](#configure-and-verify-network-connections)
-		- [Network configuration files](#network-configuration-files)
-		- [Homebrew for Linux](#homebrew-for-linux)
+  - [VSCode C/C++ Development (Windows)](#vscode-cc-development-windows)
+    - [mingw64 Configurations for C/C++ (Windows)](#mingw64-configurations-for-cc-windows)
+    - [VSCode Configurations for C/C++ (Windows)](#vscode-configurations-for-cc-windows)
+    - [Configurations Compilers in the VSCode (Windows)](#configurations-compilers-in-the-vscode-windows)
+  - [VSCode C/C++ Development (Linux/Debian)](#vscode-cc-development-linuxdebian)
+    - [Install compilers](#install-compilers)
+    - [Install VSCode by add the APT Repository](#install-vscode-by-add-the-apt-repository)
+    - [Configurations Compilers in the VSCode (Linux/Debian)](#configurations-compilers-in-the-vscode-linuxdebian)
+    - [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
+    - [Check current Linux(Debian) version](#check-current-linuxdebian-version)
+    - [Check current IP address](#check-current-ip-address)
+  - [`Path` and `Path` files in macOS](#path-and-path-files-in-macos)
+    - [Find out all `Path` files in the macOS](#find-out-all-path-files-in-the-macos)
+  - [VSCode C/C++ Development (macOS)](#vscode-cc-development-macos)
+    - [Configure the `task.josn` file for C/C++](#configure-the-taskjosn-file-for-cc)
+    - [Configure `c_cpp_properties.json`](#configure-c_cpp_propertiesjson)
+    - [Configure `.markdownlint.json` file for Markdown](#configure-markdownlintjson-file-for-markdown)
+  - [Debian 11 Configurations (2022 updated)](#debian-11-configurations-2022-updated)
+    - [Dark theme](#dark-theme)
+    - [Terminal Configuration using ZSH as default shell](#terminal-configuration-using-zsh-as-default-shell)
+    - [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
+    - [Change default editor](#change-default-editor)
+    - [Web administration default user](#web-administration-default-user)
+  - [Softwares for Linux/Debian](#softwares-for-linuxdebian)
+    - [1. MySQL](#1-mysql)
+    - [2. Install Google Chrome](#2-install-google-chrome)
+    - [3. Install Microsoft Edge](#3-install-microsoft-edge)
+    - [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
+    - [4. Install Visual Studio Code and Code insiders](#4-install-visual-studio-code-and-code-insiders)
+    - [5. Install Sublime-text](#5-install-sublime-text)
+    - [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
+    - [7. pyenv](#7-pyenv)
+    - [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
+      - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
+      - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
+      - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
+      - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
+      - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
+      - [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
+    - [9. yt-dlp download](#9-yt-dlp-download)
+    - [Configure and Verify Network Connections](#configure-and-verify-network-connections)
+    - [Network configuration files](#network-configuration-files)
+    - [Homebrew for Linux](#homebrew-for-linux)
 
 ## VSCode C/C++ Development (Windows)
 
@@ -131,8 +132,8 @@
 - Install by command `apt` package manage
 
 ```sh
-   $ sudo apt update && sudo apt upgrade -y
-   $ sudo apt install gcc g++ clang gdb
+   sudo apt update && sudo apt upgrade -y
+   sudo apt install gcc g++ clang gdb
 ```
 
 ### Install VSCode by add the APT Repository
@@ -140,20 +141,20 @@
 - Add APT Repository of VSCode
 
 ```sh
-   $ sudo apt-get install wget gpg
-   $ wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-   $ sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-   $ sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-   $ rm -f packages.microsoft.gpg
-   $ echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+   sudo apt-get install wget gpg
+   wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+   sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+   sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+   rm -f packages.microsoft.gpg
+   echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
 
 ```
 
 - Install VSCode by command `apt` package manage
 
 ```sh
-   $ sudo apt update
-   $ sudo apt install code
+   sudo apt update
+   sudo apt install code
 
 ```
 
@@ -276,11 +277,11 @@ $ uname -v
 - Show all info of IP address
 
 ```sh
-$ ifconfig
+ifconfig
 
-$ ip a
+ip a
 
-$ ip addr show
+ip addr show
 
 ```
 
@@ -412,7 +413,7 @@ $ echo $SHELL
 - Step 3: Install `ohmyzsh` for shell theme
 
 ```sh
-$ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 - Step 4: Install `powerlevel10k` for shell theme
@@ -420,9 +421,9 @@ $ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-
 - Reference: [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 ```sh
-$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/username/.oh-my-zsh/custom/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/username/.oh-my-zsh/custom/themes/powerlevel10k
 
-$ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 - Step 5: Add extra fonts
@@ -498,8 +499,8 @@ echo "deb [arch=amd64] <http://dl.google.com/linux/chrome/deb/> stable main" | s
 - Install by `apt` package manage
 
 ```sh
-$ sudo apt update
-$ sudo apt install google-chrome-stable
+sudo apt update
+sudo apt install google-chrome-stable
 ```
 
 ### 3. Install Microsoft Edge
@@ -507,7 +508,7 @@ $ sudo apt install google-chrome-stable
 - Add APT repository
 
 ```sh
-$ sudo wget -O- <https://packages.microsoft.com/keys/microsoft.asc> | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
+sudo wget -O- <https://packages.microsoft.com/keys/microsoft.asc> | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft-edge.gpg
 ```
 
 - Add to the `sources.list`
@@ -517,8 +518,8 @@ echo 'deb [signed-by=/usr/share/keyrings/microsoft-edge.gpg] <https://packages.m
 ```
 
 ```sh
-$ sudo apt update
-$ sudo apt install microsoft-edge-stable -y
+sudo apt update
+sudo apt install microsoft-edge-stable -y
 ```
 
 ### _**(CAUTIONS DATA and TIME MUST BE CORRECT)**_
@@ -542,10 +543,10 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/ms-vscode-keyring.gpg] <http
 - Install by `apt` package manage
 
 ```sh
-$ sudo apt update
-$ sudo apt install code && sudo apt install code-insiders
-$ set code as default editor
-$ sudo update-alternatives --set editor /usr/bin/code
+sudo apt update
+sudo apt install code && sudo apt install code-insiders
+set code as default editor
+sudo update-alternatives --set editor /usr/bin/code
 
 ```
 
@@ -556,13 +557,13 @@ $ sudo update-alternatives --set editor /usr/bin/code
 - Add the Sublime-text repository
 
 ```sh
-$ wget -qO - <https://download.sublimetext.com/sublimehq-pub.gpg> | sudo apt-key add -
+wget -qO - <https://download.sublimetext.com/sublimehq-pub.gpg> | sudo apt-key add -
 ```
 
 - Add to the `sources.list`
 
 ```sh
-$ "deb <https://download.sublimetext.com/> apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+"deb <https://download.sublimetext.com/> apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 ```
 
 - Sublime Text 4 (Invalid)
@@ -629,14 +630,14 @@ cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
 - pre-requirement: (Linux/Debian)
 
 ```sh
-$ sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 ```
 
 - Installing a system-wide Python
   If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
 
 ```sh
-$ sudo python-build 3.3.2 /usr/local/
+sudo python-build 3.3.2 /usr/local/
 ```
 
 If you didn’t like this code editor and in the future, you want to remove it completely from your system then that is possible as well using the command terminal.
@@ -644,20 +645,20 @@ If you didn’t like this code editor and in the future, you want to remove it c
 - For Snap users:
 
 ```sh
-$ sudo snap remove codium
+sudo snap remove codium
 ```
 
 - For APT users:
 
 ```sh
-$ sudo apt autoremove --purge codium
+sudo apt autoremove --purge codium
 ```
 
 - To remove the repo and GPG key:
 
 ```sh
-$ sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
-$ sudo rm /etc/apt/sources.list.d/vscodium.list
+sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
+sudo rm /etc/apt/sources.list.d/vscodium.list
 ```
 
 ### 8. Install `OneDrive` for Linux/Debian
@@ -672,7 +673,7 @@ The packages support the following platform architectures:
 Add the OpenSuSE Build Service repository release key using the following command:
 
 ```sh
-$ wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
+wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/Release.key | gpg --dearmor | sudo tee /usr/share/keyrings/obs-onedrive.gpg > /dev/null
 ```
 
 #### Step 2: Add the OpenSuSE Build Service repository
@@ -680,11 +681,11 @@ $ wget -qO - https://download.opensuse.org/repositories/home:/npreining:/debian-
 Add the OpenSuSE Build Service repository to `sources.list`
 
 ```sh
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./" | sudo tee /etc/apt/sources.list.d/onedrive.list
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./" | sudo tee /etc/apt/sources.list.d/onedrive.list
 ```
 
 ```sh
-$ deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
+deb [arch=amd64 signed-by=/usr/share/keyrings/obs-onedrive.gpg] https://download.opensuse.org/repositories/home:/npreining:/debian-ubuntu-onedrive/Debian_11/ ./
 ```
 
 #### Step 3: Update your apt package cache
@@ -702,7 +703,19 @@ Read and understand the [known issues]
 #### Step 6. Enable OnedriveGUI
 
 ```sh
-$ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
+nohup python3 OneDriveGUI.py > /dev/null 2>&1&
+```
+
+### 9. yt-dlp download
+
+- Download Videos as Audio from Youtube
+- Download and  save as the video title change `%(id)s.%(ext)s` to `'%(title)s.%(ext)s'` to save. For a custom filename `songname.%(ext)s`.
+
+```sh
+$ yt-dlp -f 'ba' "http://link" -o '%(id)s.%(ext)s'
+
+$ yt-dlp -f 'ba' -x --audio-format wav "http://link"  -o '%(id)s.%(ext)s'
+
 ```
 
 ---
@@ -721,23 +734,23 @@ sudo apt install net-tools
 
 ```text
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-	link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-	inet 127.0.0.1/8 scope host lo
-		valid_lft forever preferred_lft forever
-	inet6 ::1/128 scope host
-	  valid_lft forever preferred_lft forever
+ link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+ inet 127.0.0.1/8 scope host lo
+  valid_lft forever preferred_lft forever
+ inet6 ::1/128 scope host
+   valid_lft forever preferred_lft forever
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-	link/ether dc:a6:32:1a:44:7c brd ff:ff:ff:ff:ff:ff
-	inet 192.168.1.72/24 brd 192.168.1.255 scope global noprefixroute eth0
-		valid_lft forever preferred_lft forever
-	inet6 fe80::d34f:69c7:7e8:ea2/64 scope link
-		valid_lft forever preferred_lft forever
+ link/ether dc:a6:32:1a:44:7c brd ff:ff:ff:ff:ff:ff
+ inet 192.168.1.72/24 brd 192.168.1.255 scope global noprefixroute eth0
+  valid_lft forever preferred_lft forever
+ inet6 fe80::d34f:69c7:7e8:ea2/64 scope link
+  valid_lft forever preferred_lft forever
 3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-	link/ether dc:a6:32:1a:44:7d brd ff:ff:ff:ff:ff:ff
-	inet 192.168.1.73/24 brd 192.168.1.255 scope global dynamic noprefixroute wlan0
-		valid_lft 69545sec preferred_lft 58745sec
-	inet6 fe80::3691:6cd9:e5a2:3a6f/64 scope link
-		valid_lft forever preferred_lft forever
+ link/ether dc:a6:32:1a:44:7d brd ff:ff:ff:ff:ff:ff
+ inet 192.168.1.73/24 brd 192.168.1.255 scope global dynamic noprefixroute wlan0
+  valid_lft 69545sec preferred_lft 58745sec
+ inet6 fe80::3691:6cd9:e5a2:3a6f/64 scope link
+  valid_lft forever preferred_lft forever
 
 ```
 
@@ -745,18 +758,18 @@ sudo apt install net-tools
 - Testing DNS by using command `dig`:
 
 ```sh
-$ dig (DNS lookup utility)
-$ dig google.com
+dig (DNS lookup utility)
+dig google.com
 
-$ dig @127.0.0.1 google.com
-$ dig @8.8.8.8 google.com
+dig @127.0.0.1 google.com
+dig @8.8.8.8 google.com
 ```
 
 - Using command `nslookup` and `host`
 
 ```sh
-$ nslookup google.com
-$ host google.com
+nslookup google.com
+host google.com
 ```
 
 ### Network configuration files
@@ -779,18 +792,18 @@ configure network, or group, passwd,
 - Step 1: Install Homebrew for Linux/Debian
 
 ```sh
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 - Step 2: Add Homebrew to PATH and the .profile
   - Execute each to add paths.
 
 ```sh
-$ test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 
-$ test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-$ test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
 
-$ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 ```

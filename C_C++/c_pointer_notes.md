@@ -5,6 +5,7 @@
     - [What is Pointer?](#what-is-pointer)
     - [Builtin Data types](#builtin-data-types)
     - [Using a Pointer](#using-a-pointer)
+    - [Pointer Arithmetic](#pointer-arithmetic)
 
 ## Introduction to Pointer in C
 
@@ -19,7 +20,7 @@
 
 - int type is `4 bytes`
 - char type is `1 byte`
-- float tyep is `4 bytes`
+- float type is `4 bytes`
 
 <img src="img/variable_in_memory.png" alt="memory" width="800">
 
@@ -35,12 +36,11 @@
   the pointer `p` **MUST** be int type,
 - `&a` contains the address of the variable `a`
 - `p` and `&a` have same address, `p = &a`, in the example is 204
-- `&p` contains the address of the varialbe `p`, `&p == 64`
-- `*p` get the value, `*p = a` or derefrencing
+- `&p` contains the address of the variable `p`, `&p == 64`
+- `*p` get the value, `*p = a` or dereferencing
 
 ```c
 #include <stdio.h>
-
 int main(int argc, char const *argv[])
 {
     int a = 5;  //variable declaration
@@ -53,6 +53,27 @@ int main(int argc, char const *argv[])
     printf("*p = %d\n", *p); // *p = 12
     printf("a = %d\n", a); // a = 12
     printf("&a = %p\n", &a); // p == &a, the address of a
+    return 0;
+} // main
+```
+
+### Pointer Arithmetic
+
+- Pointer increment/decrement
+- The point `int* p` is pointed to the address of the variable `a`
+  `int* p = &a`, `p+1` will be increased by **4 bytes**
+- `p` contains the address of a, 
+  the address of a will be increased by 4 bytes
+
+```c
+#include <stdio.h>
+int main(int argc, char const *argv[])
+{
+    int a = 10;
+    int *p = &a;
+    // Pointer Arithmetic
+    printf("p = %p\n", p);       // p = 0x7fff9543cc44
+    printf("p+1 = %p\n", p + 1); // p+1 = 0x7fff9543cc48
     return 0;
 } // main
 ```

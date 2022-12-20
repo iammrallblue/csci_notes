@@ -24,15 +24,22 @@
     - [Install `cheat.sh` globally setting](#install-cheatsh-globally-setting)
     - [Change default editor](#change-default-editor)
     - [Web administration default user](#web-administration-default-user)
-  - [Softwares for Linux/Debian](#softwares-for-linuxdebian)
-    - [1. MySQL](#1-mysql)
-    - [2. Install Google Chrome](#2-install-google-chrome)
+  - [Configuration for Linux/Debian](#configuration-for-linuxdebian)
+    - [1. `Wayland` Setting](#1-wayland-setting)
+    - [2. Add a user to **Sudoer** (if needed)](#2-add-a-user-to-sudoer-if-needed)
+    - [3. Asian language inputs `fcitx5`](#3-asian-language-inputs-fcitx5)
+    - [3.1 Repair `fcitx5` if when it could not start automatically](#31-repair-fcitx5-if-when-it-could-not-start-automatically)
+    - [4. config the `sources.list` file](#4-config-the-sourceslist-file)
+    - [5. Compilers Configuration or update compilers to latest versions](#5-compilers-configuration-or-update-compilers-to-latest-versions)
+    - [6. Install Multiple Pythons](#6-install-multiple-pythons)
+    - [7. Install `nala` package manage](#7-install-nala-package-manage)
+    - [8. Install `emacs` editor](#8-install-emacs-editor)
+    - [9. MySQL (Check MySQL Notes)](#9-mysql-check-mysql-notes)
+    - [9. Install Google Chrome](#9-install-google-chrome)
     - [3. Install Microsoft Edge](#3-install-microsoft-edge)
     - [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
     - [4. Install Visual Studio Code and Code insiders](#4-install-visual-studio-code-and-code-insiders)
     - [5. Install Sublime-text](#5-install-sublime-text)
-    - [6. Asian inputs `fcitx5`](#6-asian-inputs-fcitx5)
-    - [7. pyenv](#7-pyenv)
     - [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
       - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
       - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
@@ -462,9 +469,196 @@ sudo update-alternatives --set editor /usr/bin/emacs
 
 - For that purpose, a web user named 'backuppc' pw: 'T\*\*\*\*N'
 
-## Softwares for Linux/Debian
+## Configuration for Linux/Debian
 
-### 1. MySQL
+### 1. `Wayland` Setting
+
+- Change to `Wayland`
+
+```sh
+sudo apt install plasma-workspace-wayland -y
+```
+
+---
+
+### 2. Add a user to **Sudoer** (if needed)
+
+- Using `root` to add a user to sudoer group
+
+```sh
+useradd -aG sudo username
+```
+
+- Add to the `sudoers` file `/etc/sudoers`
+
+```sh
+$ emacs -nw /etc/sudoers
+
+$ username ALL=(ALL:ALL) ALL
+```
+
+---
+
+### 3. Asian language inputs `fcitx5`
+
+- Cannot connect to fcitx by dbus, is fcitx running?
+- Reference: [Input install](https://www.cnblogs.com/tjpicole/p/16249251.html)
+  , [Setup Fcitx5](https://fcitx-im.org/wiki/Setup_Fcitx_5#XDG_Autostart), [Install fcitx5](https://wiki.debian.org/I18n/Fcitx5#Install_Fcitx5_on_bullseye)
+
+- Step 1: Configure Asian UTF-8 environment `locales`
+
+```sh
+# install fcitx5 and its dependencies
+sudo apt install fcitx5
+
+sudo dpkg-reconfigure locales
+
+# select the ja_JP.UTF-8, ko_KR.UTF-8, zh_TW.UTF-8, or zh_HK.UTF-8
+```
+
+- Step 2: Setup `fcitx5`
+
+```sh
+im-config
+# config fcitx5
+```
+
+---
+
+### 3.1 Repair `fcitx5` if when it could not start automatically
+
+- Repair `fcitx5` Asian inputs (zhuyin, mozc, etc...)
+
+- Reinstall fcitx5 and its relative dependencies
+
+```sh
+apt install --install-recommends fcitx5 fcitx5-chinese-addons
+apt install gnome-shell-extension-kimpanel
+```
+
+- Step 3: Add configuration to `/etc/environment`
+
+```sh
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+INPUT_METHOD=fcitx
+SDL_IM_MODULE=fcitx
+```
+
+- Step 4: Add link `ln`
+
+```sh
+ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+
+cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+```
+
+---
+
+### 4. config the `sources.list` file
+
+- [APT repository reference](https://www.debian.org/doc/manuals/debian-reference/ch02)
+- Add `unstable` , or `backports`
+
+```sh
+# backports
+deb http://deb.debian.org/debian/ bullseye main contrib non-free
+deb http://security.debian.org/debian-security bullseye-security main contrib
+deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+deb http://deb.debian.org/debian/ bullseye-backports main contrib non-free
+
+# unstable and testing
+deb http://deb.debian.org/debian/ testing main contrib non-free
+deb http://deb.debian.org/debian/ unstable main contrib non-free
+deb http://security.debian.org/debian-security testing-security main contrib
+
+# sid source
+deb http://deb.debian.org/debian/ sid main contrib non-free
+```
+
+---
+
+### 5. Compilers Configuration or update compilers to latest versions
+
+- Install GCC, G++, GDB, CLANG for C/C++
+
+```sh
+sudo apt install gcc g++ gdb clang
+```
+
+---
+
+### 6. Install Multiple Pythons
+
+- Install `pyenv` to manage multiple python versions
+- pre-requirement: (Linux/Debian)
+
+```sh
+sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+- Installing a system-wide Python
+  If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
+
+```sh
+sudo python-build 3.3.2 /usr/local/
+```
+
+If you didn’t like this code editor and in the future, you want to remove it completely from your system then that is possible as well using the command terminal.
+
+- Python Environment
+
+```sh
+$ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+# Add the iniial env variables for python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+# or
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init -)"
+fi
+```
+
+- Install multiple pythons by `pyenv`
+
+```sh
+pyenv install 2.17.8
+```
+
+- Set up pythons globally
+
+```sh
+pyenv global 2.7.18 3.11.1
+```
+
+---
+
+### 7. Install `nala` package manage
+
+- Add API Repository
+
+```sh
+$ echo "deb [arch=amd64] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+
+# download and add the GPG key for verification
+$ wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar-unstable.gpg > /dev/null
+```
+
+---
+
+### 8. Install `emacs` editor
+
+```sh
+sudo apt install emacs
+```
+
+### 9. MySQL (Check MySQL Notes)
 
 1. Setup MySQL
    1.1 APT repository
@@ -482,7 +676,7 @@ sudo update-alternatives --set editor /usr/bin/emacs
    2.1 mysql -uroot -p
    2.2 show databases;
 
-### 2. Install Google Chrome
+### 9. Install Google Chrome
 
 - Add APT repository
 
@@ -584,64 +778,6 @@ B1D4C178 2F9DDB16 ABAA74E5 95304BEF
 —— END LICENSE ——
 ```
 
-### 6. Asian inputs `fcitx5`
-
-- Cannot connect to fcitx by dbus, is fcitx running?
-- Reference: [Input install](https://www.cnblogs.com/tjpicole/p/16249251.html)
-  , [Setup Fcitx5](https://fcitx-im.org/wiki/Setup_Fcitx_5#XDG_Autostart)
-
-- Repair `fcitx5` Asian inputs (zhuyin, mozc, etc...)
-
-  - This happens when fcitx5 could not start automatically
-
-- Step 1: Reinstall fcitx5 and its relative dependencies
-
-```sh
-apt install --install-recommends fcitx5 fcitx5-chinese-addons
-apt install gnome-shell-extension-kimpanel
-```
-
-- Step 2: Configure Asian UTF-8 environment `locales`
-
-```sh
-sudo dpkg-reconfigure locales
-```
-
-- Step 3: Add configuration to `/etc/environment`
-
-```sh
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
-INPUT_METHOD=fcitx
-SDL_IM_MODULE=fcitx
-```
-
-- Step 4: Add link `ln`
-
-```sh
-ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
-
-cp /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
-```
-
-### 7. pyenv
-
-- pre-requirement: (Linux/Debian)
-
-```sh
-sudo apt update && sudo apt install make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-```
-
-- Installing a system-wide Python
-  If you want to install a Python interpreter that's available to all users and system scripts (no pyenv), use /usr/local/ as the install path. For example:
-
-```sh
-sudo python-build 3.3.2 /usr/local/
-```
-
-If you didn’t like this code editor and in the future, you want to remove it completely from your system then that is possible as well using the command terminal.
-
 - For Snap users:
 
 ```sh
@@ -709,7 +845,7 @@ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 ### 9. yt-dlp download
 
 - Download Videos as Audio from Youtube
-- Download and  save as the video title change `%(id)s.%(ext)s` to `'%(title)s.%(ext)s'` to save. For a custom filename `songname.%(ext)s`.
+- Download and save as the video title change `%(id)s.%(ext)s` to `'%(title)s.%(ext)s'` to save. For a custom filename `songname.%(ext)s`.
 
 ```sh
 $ yt-dlp -f 'ba' "http://link" -o '%(id)s.%(ext)s'

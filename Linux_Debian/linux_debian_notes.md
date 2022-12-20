@@ -35,22 +35,22 @@
     - [7. Install `nala` package manage](#7-install-nala-package-manage)
     - [8. Install `emacs` editor](#8-install-emacs-editor)
     - [9. MySQL (Check MySQL Notes)](#9-mysql-check-mysql-notes)
-    - [9. Install Google Chrome](#9-install-google-chrome)
-    - [3. Install Microsoft Edge](#3-install-microsoft-edge)
+    - [10. Homebrew for Linux](#10-homebrew-for-linux)
+    - [12. Install Google Chrome](#12-install-google-chrome)
+    - [13. Install Microsoft Edge](#13-install-microsoft-edge)
     - [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
-    - [4. Install Visual Studio Code and Code insiders](#4-install-visual-studio-code-and-code-insiders)
-    - [5. Install Sublime-text](#5-install-sublime-text)
-    - [8. Install `OneDrive` for Linux/Debian](#8-install-onedrive-for-linuxdebian)
+    - [14. Install Visual Studio Code and Code insiders](#14-install-visual-studio-code-and-code-insiders)
+    - [15. Install Sublime-text](#15-install-sublime-text)
+    - [16. Install `OneDrive` for Linux/Debian](#16-install-onedrive-for-linuxdebian)
       - [Step 1: Add the OpenSuSE Build Service repository release key](#step-1-add-the-opensuse-build-service-repository-release-key)
       - [Step 2: Add the OpenSuSE Build Service repository](#step-2-add-the-opensuse-build-service-repository)
       - [Step 3: Update your apt package cache](#step-3-update-your-apt-package-cache)
       - [Step 4: Install 'onedrive'](#step-4-install-onedrive)
       - [Step 5: Read 'Known Issues' with these packages](#step-5-read-known-issues-with-these-packages)
       - [Step 6. Enable OnedriveGUI](#step-6-enable-onedrivegui)
-    - [9. yt-dlp download](#9-yt-dlp-download)
-    - [Configure and Verify Network Connections](#configure-and-verify-network-connections)
-    - [Network configuration files](#network-configuration-files)
-    - [Homebrew for Linux](#homebrew-for-linux)
+    - [17. yt-dlp download](#17-yt-dlp-download)
+    - [18. Configure and Verify Network Connections](#18-configure-and-verify-network-connections)
+    - [19. Network configuration files](#19-network-configuration-files)
 
 ## VSCode C/C++ Development (Windows)
 
@@ -404,6 +404,8 @@ $ which zsh
 - Step 2: Set the `ZSH` as default shell
 
 ```sh
+$ chsh -s $(which zsh)
+# or
 $ chsh
 # enter password
 
@@ -582,9 +584,16 @@ deb http://deb.debian.org/debian/ sid main contrib non-free
 ### 5. Compilers Configuration or update compilers to latest versions
 
 - Install GCC, G++, GDB, CLANG for C/C++
+- Install llvm for Debian
+- [llvm Reference](https://apt.llvm.org)
+- [gcc reference](https://gcc.gnu.org)
 
 ```sh
 sudo apt install gcc g++ gdb clang
+
+# clang from llvm
+
+# gcc from gnu.org
 ```
 
 ---
@@ -658,6 +667,8 @@ $ wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.
 sudo apt install emacs
 ```
 
+---
+
 ### 9. MySQL (Check MySQL Notes)
 
 1. Setup MySQL
@@ -676,7 +687,52 @@ sudo apt install emacs
    2.1 mysql -uroot -p
    2.2 show databases;
 
-### 9. Install Google Chrome
+### 10. Homebrew for Linux
+
+- Step 1: Install Homebrew for Linux/Debian
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+- Step 2: Add Homebrew to PATH and the .profile
+  - Execute each to add paths.
+
+```sh
+# Run these three commands in your terminal to add Homebrew to your PATH:
+echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /home/username/.profile
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/username/.profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+source ~/.profile
+
+# Install Homebrew's dependencies if you have sudo access:
+sudo apt-get install build-essential
+
+# For more information, see: https://docs.brew.sh/Homebrew-on-Linux
+# We recommend that you install GCC:
+brew install gcc
+# Run brew help to get started
+# Further documentation: https://docs.brew.sh
+
+```
+
+```sh
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
+
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
+```
+
+```sh
+# add path to "$PATH"
+
+```
+
+### 12. Install Google Chrome
 
 - Add APT repository
 
@@ -697,7 +753,7 @@ sudo apt update
 sudo apt install google-chrome-stable
 ```
 
-### 3. Install Microsoft Edge
+### 13. Install Microsoft Edge
 
 - Add APT repository
 
@@ -718,7 +774,7 @@ sudo apt install microsoft-edge-stable -y
 
 ### _**(CAUTIONS DATA and TIME MUST BE CORRECT)**_
 
-### 4. Install Visual Studio Code and Code insiders
+### 14. Install Visual Studio Code and Code insiders
 
 - [Reference read](https://www.itzgeek.com/how-tos/linux/debian/how-to-install-visual-studio-code-on-debian-11-debian-10.html)
 
@@ -744,7 +800,7 @@ sudo update-alternatives --set editor /usr/bin/code
 
 ```
 
-### 5. Install Sublime-text
+### 15. Install Sublime-text
 
 - [Reference read](https://linuxhint.com/install-sublime-debian-11/)
 
@@ -797,7 +853,7 @@ sudo rm /usr/share/keyrings/vscodium-archive-keyring.gpg
 sudo rm /etc/apt/sources.list.d/vscodium.list
 ```
 
-### 8. Install `OneDrive` for Linux/Debian
+### 16. Install `OneDrive` for Linux/Debian
 
 The packages support the following platform architectures:
 | &nbsp;i686&nbsp; | x86_64 | ARMHF | AARCH64 |
@@ -842,7 +898,7 @@ Read and understand the [known issues]
 nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 ```
 
-### 9. yt-dlp download
+### 17. yt-dlp download
 
 - Download Videos as Audio from Youtube
 - Download and save as the video title change `%(id)s.%(ext)s` to `'%(title)s.%(ext)s'` to save. For a custom filename `songname.%(ext)s`.
@@ -856,7 +912,7 @@ $ yt-dlp -f 'ba' -x --audio-format wav "http://link"  -o '%(id)s.%(ext)s'
 
 ---
 
-### Configure and Verify Network Connections
+### 18. Configure and Verify Network Connections
 
 Network commands:
 
@@ -908,7 +964,7 @@ nslookup google.com
 host google.com
 ```
 
-### Network configuration files
+### 19. Network configuration files
 
 - Editing the `hosts`, `/etc/hosts` file
 
@@ -921,25 +977,4 @@ ex. 127.0.0.1 google.com
 
 ```text
 configure network, or group, passwd,
-```
-
-### Homebrew for Linux
-
-- Step 1: Install Homebrew for Linux/Debian
-
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-- Step 2: Add Homebrew to PATH and the .profile
-  - Execute each to add paths.
-
-```sh
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
-
-echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 ```

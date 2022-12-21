@@ -36,6 +36,7 @@
     - [8. Install `emacs` editor](#8-install-emacs-editor)
     - [9. MySQL (Check MySQL Notes)](#9-mysql-check-mysql-notes)
     - [10. Homebrew for Linux](#10-homebrew-for-linux)
+    - [11. Install `cheat.sh`](#11-install-cheatsh)
     - [12. Install Google Chrome](#12-install-google-chrome)
     - [13. Install Microsoft Edge](#13-install-microsoft-edge)
     - [_**(CAUTIONS DATA and TIME MUST BE CORRECT)**_](#cautions-data-and-time-must-be-correct)
@@ -51,6 +52,8 @@
     - [17. yt-dlp download](#17-yt-dlp-download)
     - [18. Configure and Verify Network Connections](#18-configure-and-verify-network-connections)
     - [19. Network configuration files](#19-network-configuration-files)
+
+---
 
 ## VSCode C/C++ Development (Windows)
 
@@ -130,6 +133,8 @@
   "detail": "compiler: C:\\mingw64\\bin\\clang++.exe"
 }
 ```
+
+---
 
 ## VSCode C/C++ Development (Linux/Debian)
 
@@ -330,6 +335,8 @@ export JDK1.8=/usr/apps/jdk1.8
 export PATH=$JDK1.7/bin
 ```
 
+---
+
 ## VSCode C/C++ Development (macOS)
 
 ### Configure the `task.josn` file for C/C++
@@ -381,6 +388,8 @@ ln -s /usr/local/Cellar/llvm/15.0.6/bin/clang-15 /usr/local/bin
 ### Configure `.markdownlint.json` file for Markdown
 
 - none
+
+---
 
 ## Debian 11 Configurations (2022 updated)
 
@@ -470,6 +479,8 @@ sudo update-alternatives --set editor /usr/bin/emacs
 - BackupPC can be managed through its web interface: <http://hostname/backuppc/>
 
 - For that purpose, a web user named 'backuppc' pw: 'T\*\*\*\*N'
+
+---
 
 ## Configuration for Linux/Debian
 
@@ -730,6 +741,17 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile
 ```sh
 # add path to "$PATH"
 
+```
+
+### 11. Install `cheat.sh`
+
+- Install and set **`alias`**
+
+```sh
+curl -s https://cht.sh/:cht.sh | sudo tee /usr/local/bin/cht.sh && sudo chmod +x /usr/local/bin/cht.sh
+
+# in ~/.bashrc or ~/.zshrc
+alias cht="cht.sh"
 ```
 
 ### 12. Install Google Chrome

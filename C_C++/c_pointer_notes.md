@@ -8,6 +8,7 @@
     - [Pointer Arithmetic](#pointer-arithmetic)
     - [Pointer types, and void Pointer](#pointer-types-and-void-pointer)
     - [Pointer to Pointer](#pointer-to-pointer)
+    - [Pointer as function argument](#pointer-as-function-argument)
 
 ## Introduction to Pointer in C
 
@@ -23,6 +24,7 @@
 - int type is `4 bytes`
 - char type is `1 byte`
 - float type is `4 bytes`
+- Each byte have an address in memory
 
 <img src="img/variable_in_memory.png" alt="memory" width="800">
 
@@ -131,8 +133,68 @@ int main(int argc, char const *argv[])
 ```
 
 ### Pointer to Pointer
--
+
+- Pointer can point to a pointer
+
+<img src="img/pointer_to_pointer_2.jpg" alt="pointer_to_pointer" width="800">
+
+```c
+#include <stdio.h>
+int main(int argc, char const *argv[])
+{
+    /* pointer to pointer */
+    int x = 5;
+    int *p = &x; // pointer p has the a's address
+    *p = 6;      // change a's value, same as a = 6;
+    // declare a pointer points to a pointer
+    int **q = &p;  // pointer q has the pointer a's address
+    int ***r = &q; // pointer r has the pointer q's address
+
+    printf("p contains x's address = %d\n", p);   // x's address 225
+    printf("*p has x's value = %d\n", *p);        // *p = 6, so x = 6
+    printf("*q contains x's address = %d\n", *q); // x's address 225
+    printf("*(*q) has x's value = %d\n", *(*q));  // has x's value 6
+    // printf("**q = %d\n", );
+    printf("*(*r) contains x's address = %d\n", *(*r)); // x's address 225
+    printf("*(*(*r)) has x's value = %d\n", *(*(*r))); // has x's value 6
+
+    **q = *p + 100; // 6 + 100
+    printf("x = %d\n", x); // x = 106
+
+    ***r = 200;
+    printf("x = %d\n", x); // x = 200
 
 
+    return 0;
+} // main
 
-<img src="img" alt="pointer_to_pointer" width="800">
+```
+
+### Pointer as function argument
+
+- `a -> x` is **call by value**
+
+<img src="img/pointer_as_arg_01.jpg" alt="pointer_as_argument" width="800">
+
+- call by reference
+
+<img src="img/pointer_as_arg_02.jpg" alt="pointer_as_argument" width="800">
+
+```c
+#include <stdio.h>
+
+void increment(int *p)
+{
+    *p = (*p) + 1;
+}
+int main(int argc, char const *argv[])
+{
+    /* code */
+    int a = 10;
+    printf("Before call increment method a = %d\n", a);
+    increment(&a);
+    printf("After call increment method a = %d\n", a);
+    return 0;
+} // main
+
+```

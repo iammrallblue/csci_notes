@@ -9,6 +9,7 @@
     - [Pointer types, and void Pointer](#pointer-types-and-void-pointer)
     - [Pointer to Pointer](#pointer-to-pointer)
     - [Pointer as function argument](#pointer-as-function-argument)
+    - [Pointer and Array](#pointer-and-array)
 
 ## Introduction to Pointer in C
 
@@ -185,7 +186,7 @@ int main(int argc, char const *argv[])
 
 void increment(int *p)
 {
-    *p = (*p) + 1;
+    *p = (*p) + 1; // x's value increased by 1
 }
 int main(int argc, char const *argv[])
 {
@@ -196,5 +197,46 @@ int main(int argc, char const *argv[])
     printf("After call increment method a = %d\n", a);
     return 0;
 } // main
+
+```
+
+### Pointer and Array
+
+- The array represented in the memory
+- `int` is 4 bytes, the array A[5] has 5 elements. the size of the A[5] is 4 x 5 = 20 bytes
+- Two diagrams to represent array in memory (see image)
+
+<img src="img/pointer_and_array.jpg" alt="pointer_array" width="800">
+
+- `int` type variable in the memory
+
+<img src="img/pointer_and_array_02.jpg" alt="array_in_memory" width="800">
+
+- `int` type Array in memory
+
+<img src="img/array_in_memory.jpg" alt="array_in_memory" width="800">
+
+```c
+#include <stdio.h>
+int main(int argc, char const *argv[])
+{
+    /* Array in the memory */
+    int A[] = {2, 4, 5, 8, 1};
+    int *p = A;
+    // A++; // A++ is invalid
+    // p++; // valid
+    for (int i = 0; i < 5; i++)
+    {
+        // addresses of each element of the array
+        printf("Address = %d\n", &A[i]);
+        printf("Address = %d\n", A + i);
+
+        // values of each array element
+        printf("value = %d\n", A[i]);
+        printf("value = %d\n", *(A + i));
+    } // for
+    return 0;
+} // main
+
 
 ```

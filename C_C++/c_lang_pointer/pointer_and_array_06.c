@@ -10,12 +10,12 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < 5; i++)
     {
         // addresses of each element of the array
-        printf("Address = %d\n", &A[i]);
-        printf("Address = %d\n", A + i);
+        printf("Address = %d\n", &A[i]); // 
+        printf("Address = %d\n", A + i); // each i has 4 bytes
 
         // values of each array element
         printf("value = %d\n", A[i]);
-        printf("value = %d\n", *(A + i));
+        printf("value = %d\n", *(A + i)); 
     } // for
     return 0;
 } // main

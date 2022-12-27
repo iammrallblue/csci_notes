@@ -147,6 +147,7 @@
    sudo apt update && sudo apt upgrade -y
    sudo apt install gcc g++ clang gdb
 ```
+
 <img src="img/compilers_installation.jpg" alt="compilers" width="1000">
 
 ### Install VSCode by add the APT Repository

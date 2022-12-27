@@ -4,13 +4,13 @@ int main(int argc, char const *argv[])
 {
     /* Array in the memory */
     int A[] = {2, 4, 5, 8, 1};
-    int *p = A;
+    int *p = A; // same as int *p = A[0]
     // A++; // A++ is invalid
     // p++; // valid
     for (int i = 0; i < 5; i++)
     {
         // addresses of each element of the array
-        printf("Address = %d\n", &A[i]);
+        printf("Address = %d\n", &A[i]); // &A[0] the starting address of the array A
         printf("Address = %d\n", A + i);
 
         // values of each array element

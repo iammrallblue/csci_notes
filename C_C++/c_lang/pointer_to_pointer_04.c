@@ -14,16 +14,18 @@ int main(int argc, char const *argv[])
     printf("*p has x's value = %d\n", *p);        // *p = 6, so x = 6
     printf("*q contains x's address = %d\n", *q); // x's address 225
     printf("*(*q) has x's value = %d\n", *(*q));  // has x's value 6
+    printf("**q = %d\n", **q);                    // *(*q) **q are the same.
     // printf("**q = %d\n", );
     printf("*(*r) contains x's address = %d\n", *(*r)); // x's address 225
-    printf("*(*(*r)) has x's value = %d\n", *(*(*r))); // has x's value 6
+    printf("*(*(*r)) has x's value = %d\n", *(*(*r)));  // has x's value 6
 
-    **q = *p + 100; // 6 + 100
+    **q = *p + 100;        // 6 + 100
     printf("x = %d\n", x); // x = 106
 
     ***r = 200;
     printf("x = %d\n", x); // x = 200
 
-
+    **q = *p + 2;
+    printf("x = %d\n", x);
     return 0;
 } // main

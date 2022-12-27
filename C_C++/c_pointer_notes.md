@@ -92,9 +92,9 @@ int main(int argc, char const *argv[])
 
 - `int` is `4 bytes`, `char` is `1 byte`, `float` is `4 bytes`
 - Why strong types, `int* -> int` of `char* -> char`
-
+  - Pointer is NOT ONLY storing addresses. Also, Dereferencing
   - Dereference, easy to access/ modify value of the variable
-
+- Each `Bytes` in memory is addressable, such 200, 201,... for each byte
 - Why not generic types?
 
 <img src="img/pointer_types.jpg" alt="pointer" width="800">
@@ -113,11 +113,12 @@ int main(int argc, char const *argv[])
     printf("p + 1, Address = %d, value = %d\n", p + 1, *(p + 1));
     // p + 1 address increases, *(p + 1) is the value in the address (p + 1)
 
-    // typecasting
+    /* typecasting */
     char *p0;                                           // p0 is the char pointer
     p0 = (char *)p;                                     //  type casting int pointer p
     printf("size of char is %d byte \n", sizeof(char)); // char is 1 byte
     printf("Address = %d, value = %d\n", p0, *p0);
+    printf("Address = %d, value = %d\n", p0 + 1, *(p0 + 1));
     // The char pointer p0 has same address with int pointer p,
     // *p0 has the value of a, but *p0 is char type, (casttyping)
     // why the value of *p0 is 1?
@@ -155,20 +156,21 @@ int main(int argc, char const *argv[])
     printf("*p has x's value = %d\n", *p);        // *p = 6, so x = 6
     printf("*q contains x's address = %d\n", *q); // x's address 225
     printf("*(*q) has x's value = %d\n", *(*q));  // has x's value 6
+    printf("**q = %d\n", **q);                    // *(*q) **q are the same.
     // printf("**q = %d\n", );
     printf("*(*r) contains x's address = %d\n", *(*r)); // x's address 225
-    printf("*(*(*r)) has x's value = %d\n", *(*(*r))); // has x's value 6
+    printf("*(*(*r)) has x's value = %d\n", *(*(*r)));  // has x's value 6
 
-    **q = *p + 100; // 6 + 100
+    **q = *p + 100;        // 6 + 100
     printf("x = %d\n", x); // x = 106
 
     ***r = 200;
     printf("x = %d\n", x); // x = 200
 
-
+    **q = *p + 2;
+    printf("x = %d\n", x);
     return 0;
 } // main
-
 ```
 
 ### Pointer as function argument
@@ -208,7 +210,7 @@ int main(int argc, char const *argv[])
 
 <img src="img/pointer_and_array.jpg" alt="pointer_array" width="800">
 
-- `int` type variable in the memory
+- `int` type variable in the memory represented in horizontally
 
 <img src="img/pointer_and_array_02.jpg" alt="array_in_memory" width="800">
 
@@ -222,13 +224,13 @@ int main(int argc, char const *argv[])
 {
     /* Array in the memory */
     int A[] = {2, 4, 5, 8, 1};
-    int *p = A;
+    int *p = A; // same as int *p = A[0]
     // A++; // A++ is invalid
     // p++; // valid
     for (int i = 0; i < 5; i++)
     {
         // addresses of each element of the array
-        printf("Address = %d\n", &A[i]);
+        printf("Address = %d\n", &A[i]); // &A[0] the starting address of the array A
         printf("Address = %d\n", A + i);
 
         // values of each array element
@@ -237,6 +239,4 @@ int main(int argc, char const *argv[])
     } // for
     return 0;
 } // main
-
-
 ```

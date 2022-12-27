@@ -12,11 +12,12 @@ int main(int argc, char const *argv[])
     printf("p + 1, Address = %d, value = %d\n", p + 1, *(p + 1));
     // p + 1 address increases, *(p + 1) is the value in the address (p + 1)
 
-    // typecasting
+    /* typecasting */
     char *p0;                                           // p0 is the char pointer
     p0 = (char *)p;                                     //  type casting int pointer p
     printf("size of char is %d byte \n", sizeof(char)); // char is 1 byte
     printf("Address = %d, value = %d\n", p0, *p0);
+    printf("Address = %d, value = %d\n", p0 + 1, *(p0 + 1));
     // The char pointer p0 has same address with int pointer p,
     // *p0 has the value of a, but *p0 is char type, (casttyping)
     // why the value of *p0 is 1?

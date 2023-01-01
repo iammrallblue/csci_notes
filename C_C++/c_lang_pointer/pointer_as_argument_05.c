@@ -6,7 +6,7 @@ void increment(int *p)
 }
 int main(int argc, char const *argv[])
 {
-    /* code */
+    /* ... */
     int a = 10;
     printf("Before call increment method a = %d\n", a);
     increment(&a);

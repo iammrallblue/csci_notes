@@ -10,6 +10,10 @@
     - [Pointer to Pointer](#pointer-to-pointer)
     - [Pointer as function argument](#pointer-as-function-argument)
     - [Pointer and Array](#pointer-and-array)
+    - [Arrays as functiona arguments](#arrays-as-functiona-arguments)
+    - [Character (char) Arrays and Pointers](#character-char-arrays-and-pointers)
+    - [Pointers and Multi-dimensional Arrays](#pointers-and-multi-dimensional-arrays)
+    - [Pointer and dynamic memory (DMA)](#pointer-and-dynamic-memory-dma)
 
 ## Introduction to Pointer in C
 
@@ -20,6 +24,8 @@
 - A pointer can be incremented/decremented,
   - i.e., to point to the next/ previous memory location.
 
+---
+
 ### Builtin Data types
 
 - int type is `4 bytes`
@@ -28,6 +34,8 @@
 - Each byte have an address in memory
 
 <img src="img/variable_in_memory.png" alt="memory" width="800">
+
+---
 
 ### Using a Pointer
 
@@ -63,11 +71,13 @@ int main(int argc, char const *argv[])
 } // main
 ```
 
+---
+
 ### Pointer Arithmetic
 
 - Pointer increment/decrement
 - The point `int* p` is pointed to the address of the variable `a`
-  `int* p = &a`, `p+1` will be increased by **4 bytes** i.e. p = 2002, p+1 = 2002+4
+  `int* p = &a` , `p+1` will be increased by **4 bytes** i.e. p = 2002, p+1 = 2002+4
 - Pointer `p` MUST pointed to an address of variable before using it,
   `p` contains the address of a, the address of a will be increased by 4 bytes
 
@@ -88,13 +98,15 @@ int main(int argc, char const *argv[])
 
 ```
 
+---
+
 ### Pointer types, and void Pointer
 
 - `int` is `4 bytes`, `char` is `1 byte`, `float` is `4 bytes`
 - Why strong types, `int* -> int` of `char* -> char`
   - Pointer is NOT ONLY storing addresses. Also, Dereferencing
   - Dereference, easy to access/ modify value of the variable
-- Each `Bytes` in memory is addressable, such 200, 201,... for each byte
+- Each `Bytes` in memory is addressable, such 200, 201, ... for each byte
 - Why not generic types?
 
 <img src="img/pointer_types.jpg" alt="pointer" width="800">
@@ -133,6 +145,8 @@ int main(int argc, char const *argv[])
     return 0;
 } // main
 ```
+
+---
 
 ### Pointer to Pointer
 
@@ -173,6 +187,8 @@ int main(int argc, char const *argv[])
 } // main
 ```
 
+---
+
 ### Pointer as function argument
 
 - `a -> x` is **call by value**
@@ -202,6 +218,8 @@ int main(int argc, char const *argv[])
 
 ```
 
+---
+
 ### Pointer and Array
 
 - The array represented in the memory
@@ -217,6 +235,15 @@ int main(int argc, char const *argv[])
 - `int` type Array in memory
 
 <img src="img/array_in_memory.jpg" alt="array_in_memory" width="800">
+
+- Methods to iterating Addresses of a array
+
+  - `&A[i]`, and `(A+i)`
+
+  -
+
+- Methods to iterating Values in a array
+  - `A[i]`, and `*(A + 1)`
 
 ```c
 #include <stdio.h>
@@ -240,3 +267,217 @@ int main(int argc, char const *argv[])
     return 0;
 } // main
 ```
+
+---
+
+### Arrays as functiona arguments
+
+- The Array Passes by reference
+
+-
+
+<img src="img/array_as_function_arg.jpg" alt="array_as_function_arg" width="800">
+
+```c
+#include <stdio.h>
+/**
+ * Function doubleElement()
+ *
+ */
+void doubleElement(int *A, int size)
+{
+    int i, doubleSum = 0;
+    for (i = 0; i < size; i++)
+    {
+        A[i] = 2 * A[i];
+    }
+} // doubleElement
+
+/**
+ * Function: sumOfElement()
+ *  sum up elements in array, return the sum
+ *
+ *  int A[], same as int* A, the passed array
+ *  int size, the passed array's size
+ *
+ */
+int sumOfElement(int *A, int size)
+{
+    int i, sum = 0;
+    printf("SOE - Size of A = %d, size of A[0] = %d\n", sizeof(A), sizeof(A[0]));
+    for (i = 0; i < size; i++)
+    {
+        sum += A[i]; // A[i] == *(A+i)
+    }
+    return sum;
+} // sumOfElement
+
+int main(int argc, char const *argv[])
+{
+    /* Arrays as function arguments */
+    int A[] = {1, 2, 3, 4, 5};
+    int size = sizeof(A) / sizeof(A[0]);   // get the size of the array
+    int total = sumOfElement(&A[0], size); // &A[0] is address
+    // call the function sumOfElement, the array passes by reference and the array's size
+    printf("the sum of all element in the array: %d\n", total);
+    printf("Main - Size of A = %d, size of A[0] = %d\n", sizeof(A), sizeof(A[0]));
+
+    // call the function doubleElement()
+    doubleElement(&A[0], size);
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", A[i]);    // 2 4 6 8 10
+    }
+
+    return 0;
+} // main
+```
+
+---
+
+### Character (char) Arrays and Pointers
+
+- String type: A group of characters
+  e.g "John", "Hello World"
+- How to store strings in an array
+  - char C[5] = "JOHN";
+  - char C[5] = {'J', 'O', 'H', 'N', '\0'};
+  - char C[5]; C = 'J'; c[1] = 'o'; c[2] = 'h'; c[3] = 'n' c[4] = '\0';
+- char type == 1 byte == 8 bits
+
+  - **size of aray** >= no. of characters in string + 1
+  - e.g. "John" is 4 characters, size >= 5
+
+- RULE: A string in C has to be null-terminated, the ending with `'\0'`
+
+```c
+  char c[5];
+  c[0] = 'J'; c[1] = 'o'; c[2] = 'h'; c[3] = 'n' c[4] = '\0';
+```
+
+    <img src="img/character_arrays_and_pointers.jpg" alt="char_array" width="800">
+
+- if the length of the char array`char C[4]` is 4, and without '\0'
+
+  - the print out result will be something like `JOHN�?��`
+  - b/c it violated the null-terminated rule,
+
+`
+
+````c
+    #include <stdio.h>
+    int main(int argc, char const *argv[])
+    {
+        /* Character arrays and pointers */
+        char C[4]; // without '\0',
+        C[0] = 'J';
+        C[1] = 'O';
+        C[2] = 'H';
+        C[3] = 'N';
+        printf("%s", C); // result JOHN�?��
+        return 0;
+    } // main
+    ```
+
+* with '\0' determined
+
+```c
+  #include <stdio.h>
+  int main(int argc, char const *argv[])
+  {
+      /* Character arrays and pointers */
+      char C[5]; // length 5
+      C[0] = 'J';
+      C[1] = 'O';
+      C[2] = 'H';
+      C[3] = 'N';
+      C[4] = '\0';     // with the null-terminated character '\0'
+      printf("%s", C); // result "JOHN"
+      return 0;
+  } // main
+````
+
+- Arrays and pointers are different type that are used in similar manner
+  <img src="img/character_arrays_and_pointers_02.jpg" alt="char_array" widith="800">
+
+- Arrays are always passed to function by reference
+
+```c
+  #include <stdio.h>
+  void printChar(char *C)
+  {
+      int i = 0;
+      while (C[i] != '\0') // *(C+i) == C[i]
+      {
+          printf("%c", C[i]);
+          i++;
+      } // while
+      printf("\n");
+  } // printChar
+  int main(int argc, char const *argv[])
+  {
+      char C[20] = "HELLO";
+      // call the function printChar()
+      printChar(C);
+      return 0;
+  } // main
+```
+
+- The char array C in the `main()` function, and the char pointer in the `print()`
+  <img src="img/character_arrays_and_pointer_02.jpg" alt="char_pointer" width="800">
+
+```c
+  #include <stdio.h>
+  #include <string.h>
+  // char *C is a pointer which pointed to the array C in main function, can be a const
+  void print(const char *C)
+  {
+      while (*C != '\0')
+      {
+          printf("%c", *C);
+          C++; // char pointer increased
+      }
+      printf("\n");
+
+  } // print
+
+  int main(int argc, char const *argv[])
+  {
+      char C[20] = "HELLO."; // string gets stored in the space for array
+
+      // char *C = "HELLO."; // string gets stored as compile time constant
+      // C[0] = 'A'; // compile error, if using char *C, b/c it is a constatn.
+
+      // call the print() function to pass array C
+      print(C);
+      return 0;
+  } // main
+```
+
+---
+
+### Pointers and Multi-dimensional Arrays
+
+- One-dimensional array and pointer
+
+  - **1-D Array** declaration
+  - `int A[5];` 1 ROW, 5 COLUMNS
+
+    <img src="img/pointer_and_one_dimensional_array.jpg" alt="1-dimensional" width="800">
+
+- A multi-dimensional array is an array of arrays
+- Two-dimensional array and pointer
+
+  - **2-D Array** declaration
+  - `int B[2][3];`, 2 ROWS, 3 COLUMNS. 2x3=6 elements in Array B. 6 x 4 bytes = 24 bytes.
+  - int B[2][3] = {2,3,6,4,5,8}; or int B[2][3] = {{2,3,6,}, {4,5,8}};
+
+    <img src="img/two_dimensional_array_pointer_01.jpg" alt="2-dimensional" width="800">
+
+    <img src="img/two_dimensional_array_pointer_02.jpg" alt="2-dimensional" width="800">
+
+    <img src="img/two_dimensional_array_pointer_03.jpg" alt="2-dimensional" width="800">
+
+### Pointer and dynamic memory (DMA)
+
+-

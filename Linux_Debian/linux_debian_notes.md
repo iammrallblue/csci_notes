@@ -1002,3 +1002,40 @@ ex. 127.0.0.1 google.com
 ```text
 configure network, or group, passwd,
 ```
+
+### 20. `console-setup` zoom in/out console fonts
+
+- Using `dpkg-reconfigure`
+
+```sh
+sudo dpkg-reconfigure console-setup
+
+# select "UTF-8"
+
+# character set, select "Guess optimal character set"
+
+# console font, select "TerminusBold" or "TerminusBoldVGA"
+
+# font size, select "16x32"
+
+
+```
+
+- Editing console-setup file directly
+
+```sh
+# CONFIGURATION FILE FOR SETUPCON
+
+# Consult the console-setup(5) manual page.
+ACTTIVE_CONSOLES="/dev/tty[1-6]"
+CHARMAP="UTF-8"
+CODESET="guess"
+FONTFACE="TerminusBold"
+FONTSIZE="16x32"
+VIDEOMODE=
+
+# The following is an example how to use a braille font
+# FONT='lat9w-08.psf.gz brl-8x8.psf'
+```
+- `showconsolefont` command
+ - show console font settings

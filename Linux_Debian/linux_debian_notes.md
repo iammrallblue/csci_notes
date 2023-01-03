@@ -634,7 +634,7 @@ If you didn’t like this code editor and in the future, you want to remove it c
 ```sh
 $ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
-# Add the iniial env variables for python
+# Add the iniial env variables for pyenv and multiple python versions
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
@@ -657,6 +657,12 @@ pyenv install 2.17.8
 
 ```sh
 pyenv global 2.7.18 3.11.1
+
+# source config file
+source ~/.zshrc
+
+# or
+source ~/.bashrc
 ```
 
 ---
@@ -1038,4 +1044,4 @@ VIDEOMODE=
 # FONT='lat9w-08.psf.gz brl-8x8.psf'
 ```
 - `showconsolefont` command
- - show console font settings
+  - show console font settings

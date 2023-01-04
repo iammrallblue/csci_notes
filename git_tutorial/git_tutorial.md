@@ -202,30 +202,43 @@ $ git_demo git:(master) git push
 # fatal: No configured push destination.
 # Either specify the URL from the command-line or configure a remote # repository using
 
-    git remote add <name> <url>
+#    git remote add <name> <url>
 
-and then push using the remote name
+# and then push using the remote name
 
-    git push <name>
-
+#    git push <name>
 ```
 
 - Go to github.com to create a new repository
 
   <img src="img/create_new_repo.jpg" alt="create new repo" width="800">
 
-- copy the .git address
+- Find out and copy the `.git address`
   e.g. <https://github.com/iammrallblue/git_demo.git>
 
 - `git remote add` initialing the new local repo to github
 
 ```sh
 $ git remote add origin https://github.com/iammrallblue/git_demo.git
+# or
+$ git remote add origin git@github.com:iammrallblue/myrepo.git
+```
 
+- `git remote -v` checking if uploaded successfully
+
+```sh
 $ git remote -v
+# result
 # origin  https://github.com/iammrallblue/git_demo.git (fetch)
 # origin  https://github.com/iammrallblue/git_demo.git (push)
-#
+# or
+# origin  git@github.com:iammrallblue/myrepo.git (fetch)
+# origin  git@github.com:iammrallblue/myrepo.git (push)
+```
+
+- `git push origin master`
+
+```sh
 $ git push origin master
 ```
 

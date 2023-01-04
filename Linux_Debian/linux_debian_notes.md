@@ -339,7 +339,22 @@ $ eval "$(ssh-agent -s)"
 
 ```sh
 $ ssh-add ~/.ssh/id_rsa
+# or
+$ ssh-add --apple-use-keychain ~/.ssh/id_rsa
 # Identity added: ~/.ssh/id_rsa (username@gmail.com)
+```
+
+- Alter `config` file
+
+```sh
+$ emacs ~/.ssh/config
+
+# Adding lines to the config file
+Host git.github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+
 ```
 
 - Testing the

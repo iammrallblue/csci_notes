@@ -2,7 +2,20 @@
 
 > git tutorial for beginner
 
+## Git
+
 - A free and open source version control system
+
+### Version Control
+
+- The management of changes to documents, computer programs, large web sites, and other collections of information
+
+### Terms
+
+- `Directory` == Folder
+- Terminal or Command Line == Interface for Text Commands
+- `CLI` == Command Line Interface
+- `Repository` == Project, or the folder/place where is the project at.
 
 ## Account Validation
 
@@ -30,6 +43,10 @@ $ git config --global user.email test@email.com
 
 updated from vscode.
 
+### `clone` command
+
+- `git clone`, copy a repository from remote to local machine
+
 ### `status` command
 
 - `git status` can show the status of all files under the project
@@ -41,7 +58,8 @@ $ git status
 
 ### `add` command
 
-- `git add .` means adding all changes under the current directory
+- `git add .` adding all changes under the current directory
+- track your files and changes in `Git`
 
 ```sh
 # adding all changes
@@ -55,12 +73,12 @@ $ git add .
 
 ```sh
 # committing all changes
-$ git commit -m "message01" -m "message02"
+$ git commit -m "msg01" -m "msg02"
 ```
 
 ### `push` command
 
-- `git push` means pushing all changes to **github**
+- `git push` means pushing all changes to remote repository, like **github**
 
 ```sh
 # pushing all changes
@@ -68,6 +86,11 @@ $ git push
 ```
 
 - `git push origin master` pushing to different branches
+
+### `pull` command
+
+- `git pull` download changes from remote repo to the local machine,
+- the opposite of push
 
 ### `diff` command
 

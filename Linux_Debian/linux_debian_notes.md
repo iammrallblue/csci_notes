@@ -344,7 +344,7 @@ $ ssh-add --apple-use-keychain ~/.ssh/id_rsa
 # Identity added: ~/.ssh/id_rsa (username@gmail.com)
 ```
 
-- Alter `config` file
+- Alter the `config` file
 
 ```sh
 $ emacs ~/.ssh/config

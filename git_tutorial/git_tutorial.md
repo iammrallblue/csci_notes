@@ -1,6 +1,8 @@
 # git_tutorial notes
 
-git tutorial for beginner
+> git tutorial for beginner
+
+- A free and open source version control system
 
 ## Account Validation
 
@@ -228,7 +230,7 @@ git push -u origin main
 ### Check `.git/config` file
 
 ```sh
-➜  git_tutorial git:(main) ✗ cat ./.git/config        
+➜  git_tutorial git:(main) ✗ cat ./.git/config
 [core]
         repositoryformatversion = 0
         filemode = true

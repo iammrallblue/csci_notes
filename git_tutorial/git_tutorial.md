@@ -2,6 +2,34 @@
 
 > git tutorial for beginner
 
+- [git_tutorial notes](#git_tutorial-notes)
+  - [Git](#git)
+    - [Version Control](#version-control)
+    - [Terms](#terms)
+  - [Account Validation](#account-validation)
+    - [Validating Account by using `ssh-key`](#validating-account-by-using-ssh-key)
+    - [Set up github account](#set-up-github-account)
+  - [Basic Commands for Git](#basic-commands-for-git)
+    - [`clone` command](#clone-command)
+    - [`status` command](#status-command)
+    - [`add` command](#add-command)
+    - [`commit` command](#commit-command)
+    - [`push` command](#push-command)
+    - [`pull` command](#pull-command)
+    - [`diff` command](#diff-command)
+    - [`log` command](#log-command)
+    - [`revert` command](#revert-command)
+  - [Project From local machine to remote repository](#project-from-local-machine-to-remote-repository)
+    - [When the repo is initialized from local machine](#when-the-repo-is-initialized-from-local-machine)
+    - [The hidden folder `.git`](#the-hidden-folder-git)
+    - [Check status of the repository](#check-status-of-the-repository)
+    - [Add to the github](#add-to-the-github)
+    - [Commit all changes](#commit-all-changes)
+    - [Push a local repo to the github account](#push-a-local-repo-to-the-github-account)
+    - [Check `.git/config` file](#check-gitconfig-file)
+    - [110](#110)
+    - [111](#111)
+
 ## Git
 
 - A free and open source version control system
@@ -20,6 +48,8 @@
 ## Account Validation
 
 ### Validating Account by using `ssh-key`
+
+- check `linux_debian_notes.md`
 
 ```sh
 $ ssh-keygen -t rsa -b 4096 -C "email@githubaccount.com"

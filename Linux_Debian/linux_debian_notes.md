@@ -12,6 +12,8 @@
     - [Debian (APT Repository) i386 update error](#debian-apt-repository-i386-update-error)
     - [Check current Linux(Debian) version](#check-current-linuxdebian-version)
     - [Check current IP address](#check-current-ip-address)
+  - [Enable SSH for github](#enable-ssh-for-github)
+    - [Add a SSH key to Github (Linux/Deiban and macOS)](#add-a-ssh-key-to-github-linuxdeiban-and-macos)
   - [`Path` and `Path` files in macOS](#path-and-path-files-in-macos)
     - [Find out all `Path` files in the macOS](#find-out-all-path-files-in-the-macos)
   - [VSCode C/C++ Development (macOS)](#vscode-cc-development-macos)
@@ -52,6 +54,7 @@
     - [17. yt-dlp download](#17-yt-dlp-download)
     - [18. Configure and Verify Network Connections](#18-configure-and-verify-network-connections)
     - [19. Network configuration files](#19-network-configuration-files)
+    - [20. `console-setup` zoom in/out console fonts](#20-console-setup-zoom-inout-console-fonts)
 
 ---
 
@@ -297,6 +300,56 @@ ip a
 
 ip addr show
 
+```
+
+---
+
+## Enable SSH for github
+
+### Add a SSH key to Github (Linux/Deiban and macOS)
+
+- Using `pull` and `push` and others without user name and password
+
+- Generating a public key
+
+```sh
+$ ssh-keygen -t rsa -b 4096 -C "email@githubaccount.com"
+# Generating public/private rsa key pair.
+# Enter file in which to save the key (/home/user/.ssh/id_rsa): github_db16
+# github_db16 is just the name of public key
+
+$ mv id_rsa id_rsa.pub ~/.ssh
+```
+
+- Copying the public key
+
+```sh
+$ cat ~/.ssh/id_rsa.pub
+# copy the string
+```
+
+- Adding a `ssh-agent` PID to system
+
+```sh
+$ eval "$(ssh-agent -s)"
+# Agent pid 1000 (for example)
+```
+
+- Adding a ssh key
+
+```sh
+$ ssh-add ~/.ssh/id_rsa
+# Identity added: ~/.ssh/id_rsa (username@gmail.com)
+```
+
+- Testing the
+
+```sh
+$ ssh -T git@github.com
+# The authenticity of host github.com (140.82.113.4)' can't be established.
+# ECDSA key fingerprint is SHA256:xxxx.
+# Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+# Warning: Permanently added github.com, 140.82.113.4' (ECDSA) to the list of known hosts.
 ```
 
 ---
@@ -1043,5 +1096,6 @@ VIDEOMODE=
 # The following is an example how to use a braille font
 # FONT='lat9w-08.psf.gz brl-8x8.psf'
 ```
+
 - `showconsolefont` command
   - show console font settings

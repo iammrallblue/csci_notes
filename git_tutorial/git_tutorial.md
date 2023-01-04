@@ -132,7 +132,7 @@ $ git revert "hash code"
 
 ---
 
-## From local machine to remote
+## Project From local machine to remote repository
 
 ### When the repo is initialized from local machine
 

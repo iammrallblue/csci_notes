@@ -576,8 +576,9 @@ useradd -aG sudo username
 
 ```sh
 $ emacs -nw /etc/sudoers
+edit sudoers
+add username ALL=(ALL:ALL) ALL
 
-$ username ALL=(ALL:ALL) ALL
 ```
 
 ---
@@ -993,7 +994,8 @@ Read and understand the [known issues]
 #### Step 6. Enable OnedriveGUI
 
 ```sh
-nohup python3 OneDriveGUI.py > /dev/null 2>&1&
+$ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
+# running onedrive
 ```
 
 ### 17. yt-dlp download
@@ -1003,9 +1005,10 @@ nohup python3 OneDriveGUI.py > /dev/null 2>&1&
 
 ```sh
 $ yt-dlp -f 'ba' "http://link" -o '%(id)s.%(ext)s'
+# download best audio files
 
 $ yt-dlp -f 'ba' -x --audio-format wav "http://link"  -o '%(id)s.%(ext)s'
-
+# download best audio files
 ```
 
 ---
@@ -1017,7 +1020,8 @@ Network commands:
 - Using command `ifconfig`
 
 ```sh
-sudo apt install net-tools
+$ sudo apt install net-tools
+# install net-tools
 ```
 
 - Using command `ip addr`
@@ -1082,8 +1086,7 @@ configure network, or group, passwd,
 - Using `dpkg-reconfigure`
 
 ```sh
-sudo dpkg-reconfigure console-setup
-
+$ sudo dpkg-reconfigure console-setup
 # select "UTF-8"
 
 # character set, select "Guess optimal character set"

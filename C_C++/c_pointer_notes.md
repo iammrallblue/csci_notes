@@ -355,14 +355,12 @@ int main(int argc, char const *argv[])
   c[0] = 'J'; c[1] = 'o'; c[2] = 'h'; c[3] = 'n' c[4] = '\0';
 ```
 
-    <img src="img/character_arrays_and_pointers.jpg" alt="char_array" width="800">
+  <img src="img/character_arrays_and_pointers.jpg" alt="char_array" width="800">
 
 - if the length of the char array`char C[4]` is 4, and without '\0'
 
   - the print out result will be something like `JOHN�?��`
   - b/c it violated the null-terminated rule,
-
-`
 
 ````c
     #include <stdio.h>
@@ -470,7 +468,7 @@ int main(int argc, char const *argv[])
 
   - **2-D Array** declaration
   - `int B[2][3];`, 2 ROWS, 3 COLUMNS. 2x3=6 elements in Array B. 6 x 4 bytes = 24 bytes.
-  - int B[2][3] = {2,3,6,4,5,8}; or int B[2][3] = {{2,3,6,}, {4,5,8}};
+  - `int B[2][3] = {2,3,6,4,5,8};` or `int B[2][3] = {{2,3,6,}, {4,5,8}};`
 
     <img src="img/two_dimensional_array_pointer_01.jpg" alt="2-dimensional" width="800">
 
@@ -480,4 +478,41 @@ int main(int argc, char const *argv[])
 
 ### Pointer and dynamic memory (DMA)
 
--
+- The <span style="color:yellow"> **Global variable** </span>is in the <span style="color:yellow"> `Static/Global` area</span>
+
+- Functions in the DMA
+  <img src="img/pointer_and_DMA.jpg" alt="pointer_dma" width="800">
+
+- When calling functions inside of others in the `Stack`
+  <img src="img/pointer_and_dma_01.jpg" alt="pointer_dma" width="800">
+  the function Square() called by the function SquareOfSum(), and the functionSquareOfSum called by the function main. assign the result to the global varialbe "total"
+
+- At the end the function printf() called by the function main()
+
+```c
+#include <stdio.h>
+int total; // global variable
+int Square(int x)
+{
+    return x * x;
+} // Square
+
+int SquareOfSum(int x, int y)
+{
+    int z = Square(x + y);
+    return z;
+} // SquareOfSum
+
+int main(int argc, char const *argv[])
+{
+    int a = 4, b = 8;
+    total = SquareOfSum(a, b);
+    printf("output = %d\n", total);
+    return 0;
+} // main
+```
+
+- **Stack overflow** in the `Stack` usually happened during bad recurison, b/c the size of stack does not grow during runtime
+  - Assume Stack is 1MB and funciont calls and the allocation of variables exceed 1 MB. The program will be crushed when the allocaiton and dellocation of memory onto the STACK
+    When the function called, it is pushed or popped onto the stack on the top of the stack
+    <img src="img/pointer_and_dma_02.jpg" alt="pointer_dma" width="800">

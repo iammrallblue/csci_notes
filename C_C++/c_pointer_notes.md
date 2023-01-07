@@ -14,6 +14,12 @@
     - [Character (char) Arrays and Pointers](#character-char-arrays-and-pointers)
     - [Pointers and Multi-dimensional Arrays](#pointers-and-multi-dimensional-arrays)
     - [Pointer and dynamic memory (DMA)](#pointer-and-dynamic-memory-dma)
+    - [Functions for DMA in C/C++](#functions-for-dma-in-cc)
+      - [1. Function `malloc()`](#1-function-malloc)
+      - [2. Function `calloc()`](#2-function-calloc)
+      - [3. Function `realloc()`](#3-function-realloc)
+      - [4. Function `free()`](#4-function-free)
+    - [Pointers as function returns](#pointers-as-function-returns)
 
 ## Introduction to Pointer in C
 
@@ -489,30 +495,174 @@ int main(int argc, char const *argv[])
 
 - At the end the function printf() called by the function main()
 
+  ```c
+  #include <stdio.h>
+  int total; // global variable
+  int Square(int x)
+  {
+      return x * x;
+  } // Square
+
+  int SquareOfSum(int x, int y)
+  {
+      int z = Square(x + y);
+      return z;
+  } // SquareOfSum
+
+  int main(int argc, char const *argv[])
+  {
+      int a = 4, b = 8;
+      total = SquareOfSum(a, b);
+      printf("output = %d\n", total);
+      return 0;
+  } // main
+  ```
+
+- **Stack overflow** in the `Stack` usually happened during bad recurison,
+  b/c the size of stack does not grow during runtime
+
+  - Assume Stack is 1MB and funciont calls and the allocation of variables exceed 1 MB. The program will be crushed when the allocaiton and dellocation of memory onto the STACK
+    When the function called, it is pushed or popped onto the stack on the top of the stack
+    <img src="img/pointer_and_dma_02.jpg" alt="pointer_dma" width="800">
+
+  - another limitation is that if we need to declare a large data type like an array as local variable
+    then we need to know the size of the array at compile time only
+
+  - How to use `Heap` in C/C++
+
+    - Use dynamic memory in C and C++, need to know 4 functions
+      `malloc()`, `calloc()`, `realloc()`, and `free()`
+
+    - Use dynamic memory in C++, need to know two operators
+      `new`, and `delete`, these are operators
+      <img src="img/pointer_and_dma_03.jpg" alt="pointer dma" width="800">
+
+- DMA Example
+  <img src="img/dma_01.jpg" alt="dma malloc" width="800">
+  <img src="img/dma_02.jpg" alt="dma malloc" width="800">
+
 ```c
 #include <stdio.h>
-int total; // global variable
-int Square(int x)
-{
-    return x * x;
-} // Square
-
-int SquareOfSum(int x, int y)
-{
-    int z = Square(x + y);
-    return z;
-} // SquareOfSum
-
+#include <stdlib.h>
 int main(int argc, char const *argv[])
 {
-    int a = 4, b = 8;
-    total = SquareOfSum(a, b);
-    printf("output = %d\n", total);
+    int a; // local variable goes on stack
+    int *p;
+    p = (int *)malloc(sizeof(int));
+    // malloc function, how much memory to allocate on the heap in bytes
+    // pass the sizeoof int type
+    *p = 10;
+    free(p); // one call for malloc(), one free() for it
+    p = (int *)malloc(sizeof(int));
+    *p = 20;
+    free(p);
+    p = (int *)malloc(20 * sizeof(int));
+
+    return 0;
+} // main
+
+/*
+// dma in c++
+int main(int argc, char const *argv[])
+{
+    int a; // local variable goes on stack
+    int *p;
+    p = new int;
+    *p = 10;
+    delete p;
+    p = new int[20];
+    delete[] p;
+
+    return 0;
+} // main
+*/
+```
+
+### Functions for DMA in C/C++
+
+- `malloc()`, `calloc()`, `realloc()`, perform memory allocation and `free()`, perform de-allocation. these are functions
+  <img src="img/dma_03.jpg" alt="pointer dma" width="750">
+
+#### 1. Function `malloc()`
+
+- The C library function void \*malloc(size_t size) allocates the requested memory and returns a pointer to it.
+- <img src="img/dma_04.jpg" alt="pointer dma" width="750">
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * Function name: malloc(size_t size)
+ * Description: allocates the requested memory and returns a pointer to it
+ * Parameter:
+ * @size    the size of the memmory block, in bytes.
+ * Return: The function returns a pointer to the allocated memory, or NULL if the request fails
+ *
+ */
+int main(int argc, char const *argv[])
+{
+    int n;
+    printf("Enter size of array\n");
+    scanf("%d", &n);                         // receives an array
+    int *A = (int *)malloc(n * sizeof(int)); // dynamically allocated array
+    for (int i = 0; i < n; i++)
+    {
+        A[i] = i + 1;
+    } // for
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", A[i]);
+    } // for
+    free(A);
     return 0;
 } // main
 ```
 
-- **Stack overflow** in the `Stack` usually happened during bad recurison, b/c the size of stack does not grow during runtime
-  - Assume Stack is 1MB and funciont calls and the allocation of variables exceed 1 MB. The program will be crushed when the allocaiton and dellocation of memory onto the STACK
-    When the function called, it is pushed or popped onto the stack on the top of the stack
-    <img src="img/pointer_and_dma_02.jpg" alt="pointer_dma" width="800">
+- :heavy_exclamation_mark: `*p == p[0]`, `*(p+1) == p[1]`
+
+  <img src="img/dma_05.jpg" alt="pointer dma" width="750">
+
+#### 2. Function `calloc()`
+
+- The C library function void \*calloc(size_t nitems, size_t size) allocates the requested memory and returns a pointer to it.
+- The difference in `malloc` and `calloc` is that malloc does not set the memory to zero where as calloc sets allocated memory to zero.
+- `malloc` randomly assign values for each element
+- `calloc` assign 0 for each element
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+/**
+ * Function name: calloc(size_t nitems, size_t size)
+ * Description: allocates the requested memory and returns a pointer to it
+ * Parameter:
+ * @nitems  the number of elements to be allocated.
+ * @size    the size of the elements
+ */
+int main(int argc, char const *argv[])
+{
+    int n;
+    printf("Enter size of array\n");
+    scanf("%d", &n);                        // receives an array
+    int *A = (int *)calloc(n, sizeof(int)); // dynamically allocated array
+    for (int i = 0; i < n; i++)
+    {
+        A[i] = i + 1;
+    } // for
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", A[i]);
+    } // for
+    free(A); // relase memory
+    return 0;
+} // main
+```
+
+#### 3. Function `realloc()`
+
+- The C library function void \*realloc(void \*ptr, size_t size) attempts to resize the memory block pointed to by ptr that was previously allocated with a call to malloc or calloc.
+
+#### 4. Function `free()`
+
+### Pointers as function returns
